@@ -2,6 +2,8 @@
 
 A weekly classroom lab on historical correspondence networks, with source-based writing completed after the 90-minute session.
 
+[Open the browser lab](https://conradcompagna.github.io/letters-to-networks/explorer/)
+
 **Course:** Natural Language Processing and Large Language Models for Historical Research · **Level:** upper-year undergraduate or MA; no programming experience needed · **Format:** Jupyter notebook plus a browser explorer · **Data:** 20,747 documents from the Franklin, Adams, Jefferson and Jay Papers on Founders Online, 1777–1784
 
 ![Merged network with the four editors removed](assets/network_core.png)
