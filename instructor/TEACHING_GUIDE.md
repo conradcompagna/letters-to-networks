@@ -10,24 +10,24 @@ The case (American diplomacy in Europe, 1777–1784) needs no specialist backgro
 
 - **Install once** (instructor or lab technician): Python 3.10+ and `pip install -r requirements.txt`. Or upload the repository to a JupyterHub or Google Colab; the notebook needs only the files in this repository.
 - **Check the run time** on the classroom machines: *Run All* takes about 1–2 minutes on a recent laptop. Most of it is Stage 9 (40 network rebuilds). If machines are slow, tell students to skip Stage 9 or set `reps=5`.
-- **Open the explorer** (`explorer/index.html`) on the projector. It starts with seven unconnected people beside ten source records and reveals the four network views after students build; it needs no installation.
+- **Open the explorer** (`explorer/index.html`) on the projector. It starts with an empty graph and ten complete letters, then reveals the full network after students code them; it needs no installation.
 - **Read** `data/README.md` and the answer key.
 - **Optional pre-reading** (15 minutes): a short introduction to historical network analysis, e.g. the *Programming Historian* lesson "Exploring and Analyzing Network Data with Python" (Ladd, Otis, Warren and Weingart, 2017), sections on centrality.
 
 ## Browser workshop (90 minutes)
 
-Use `explorer/index.html` as the student workspace. Students first see an empty graph with seven people. They use ten actual records to draw ties, compare their result with the production transformation of those same records, and then use the full network and supplied algorithms to make a historical interpretation. The single learning goal is to build and analyze a network.
+Use `explorer/index.html` as the student workspace. Students read ten complete letters, extract each writer and addressee, and build directed edges from their decisions. They compare their graph with the archive catalog's author–recipient fields for those same letters, then use the full network to interpret degree, betweenness, and communities. The single learning goal is to build and analyze a network.
 
 | Time | Student action |
 |---|---|
-| 0–10 | Use the unconnected graph to define a person node and a correspondence tie; open the first source and draw one tie together. |
-| 10–40 | Students read the ten linked documents and connect people directly on the graph, or mark a record "No tie." Ask why the journal and duplicate printing need different decisions. |
-| 40–50 | Count one person's distinct neighbours and the documents behind those ties by hand on the student graph. |
-| 50–65 | Compare the student graph with the production build on the same records; identify differences and state the tie rule that produced them. Then examine the full four-edition network. |
-| 65–85 | In the Four editions view, choose two people and use degree, betweenness, community, and linked documents to test a historical interpretation. |
-| 85–90 | Discuss one claim that the graph supports and one that still needs source reading; download the lab file and finish the interpretation after class. |
+| 0–10 | Read the first full letter together. Identify its signature, addressee evidence, and the writer → addressee edge. |
+| 10–45 | Students read the other nine letters, record evidence for each identification, and watch nodes and directed ties appear. They can consult the separately marked printed heading when an addressee is not clear in the letter body. |
+| 45–55 | Count one person's distinct neighbours and distinguish that from the number of letters on those ties. |
+| 55–65 | Compare the student graph with the catalog coding of the same ten letters; discuss any different identities or directions. |
+| 65–85 | Reveal the full four-edition graph. Compare degree with betweenness, inspect community placement, and open linked documents for two people. |
+| 85–90 | Begin the 500-word response in class; download the assignment file and finish it for submission through the course site. |
 
-An internet connection is needed for the Founders Online transcriptions; the records, graph builder, and full-network visualization run offline. The production comparison is a reference transformation, not an answer key: different tie rules can be defensible if students explain them. The interface checks that every record has a decision before comparison; assess the quality of decisions and historical claims yourself. Use the notebook schedule below when the goal is to run and modify the full analysis.
+The ten letters and network views run offline; source links need internet. The 1830 edition's printed headings and modern catalog titles are editorial aids, and the wording may differ between editions. The interface requires a writer, addressee, and evidence note for each letter before reveal, but does not grade their historical reasoning. Use the notebook schedule below when the goal is to run and modify the full analysis.
 
 ## Notebook schedule (90 minutes)
 

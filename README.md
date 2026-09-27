@@ -10,17 +10,11 @@ A weekly classroom lab on historical correspondence networks, with source-based 
 
 The lab is about method. Diplomacy in Paris, Madrid and The Hague supplies the case because it is well documented in four overlapping editions, and that overlap produces the problems every correspondence project meets: documents that are not letters, groups that are also people, the same person under several names, the same letter printed twice, and networks whose shape is set by whose papers were collected.
 
-## Learning objectives
+## Learning goal
 
-By the end of the lab students can:
+Students learn how to build and analyze a correspondence network: read letters, identify writers and addressees, draw directed ties, then use degree, betweenness, communities, and source links to interpret the larger network. The notebook extends this with name reconciliation, duplicate detection, and sensitivity checks.
 
-1. explain the chain of decisions that turns an edited document into a node-edge-node record, and justify each decision for a stated question;
-2. reconcile name variants across sources and state the cost of false merges and missed merges;
-3. calculate and interpret degree, weighted degree, betweenness, connected components and Louvain communities;
-4. identify the ego-network structure produced by a documentary edition, and test whether communities reproduce the structure of the archive (normalised mutual information);
-5. assess the robustness of a network ranking to missing documents.
-
-## What students do
+## Notebook route
 
 | Stage | Task |
 |---|---|
@@ -35,13 +29,13 @@ By the end of the lab students can:
 | 9 | *(optional)* Test ranking stability |
 | 10 | Write a source-cited memo |
 
-Students answer seven short questions in the notebook (two more in the optional stages) and write the memo. Each question requires opening documents on Founders Online.
+The notebook is a separate computational route through the dataset. Students answer seven short questions (two more in the optional stages) and write the memo.
 
 ## Browser workshop
 
-The explorer starts with seven unconnected people and ten source records from January 1782. Students open the linked documents, select each record, and draw its tie by dragging or clicking two people on the graph; records that do not establish a tie can be marked "No tie." The graph changes with every decision. After all ten decisions, students compare their build with the production transformation of the **same ten records** and explore the full four-edition network. The comparison distinguishes distinct ties from the number of document edges, so a duplicate printing can change the count without changing the shape.
+The browser lab starts with an empty graph and ten complete letters. Students read each letter, identify its writer and addressee, record the evidence for that identification, and add the directed tie. They can check the 1830 edition's printed heading when the body alone does not identify an addressee. The ten letters are matched to records in the full Founders Online metadata corpus.
 
-After the reveal, students state the rule they used to make ties and explain differences from the production build. They then use provided explanations of degree, betweenness, and Louvain communities to compare two people, follow document links, and write a historical interpretation of about 700–900 words. The downloadable lab file includes their record decisions, comparison reflection, and interpretation; progress is stored locally when the browser permits it. The notebook remains the longer computational route through the full dataset.
+After all ten letters, students compare their graph with the catalog's author–recipient coding for those same letters, then reveal the four-edition network. They switch between degree, betweenness, and community views, inspect correspondents and linked documents, and write a 500-word response about how those measures change their interpretation of historical roles. The downloaded assignment includes their ten coding decisions and response for submission through a course site. Progress is stored in the browser. The notebook remains the longer computational route through the full dataset.
 
 ## Run it
 
@@ -54,7 +48,7 @@ jupyter lab lab.ipynb
 
 The notebook runs offline on the bundled data in about 1–2 minutes on a laptop. It is saved with all outputs, so it can be read on GitHub without running it.
 
-**Explorer.** Open `explorer/index.html` directly in a browser. The graph builder, comparison, four full-network views, writing area, and downloadable lab work offline; reading the linked Founders Online transcriptions needs internet. Progress is saved locally when the browser permits storage. It can be published with GitHub Pages.
+**Explorer.** Open `explorer/index.html` directly in a browser or use the GitHub Pages link above. The ten complete letters, graph builder, comparison, four full-network views, and writing area work offline. Linked source volumes and Founders Online records need internet. Progress is saved locally in the browser; students download a text file to submit through their course site.
 
 ## Repository
 
@@ -62,11 +56,12 @@ The notebook runs offline on the bundled data in about 1–2 minutes on a laptop
 lab.ipynb                    the student notebook (executed)
 netlab.py                    every function the notebook uses, with docstrings
 explorer/index.html          browser explorer; explorer/data.js is generated
-explorer/starter_data.js     curated records and production comparison, generated by build_starter.py
+explorer/starter_data.js     ten complete letters and catalog comparison, generated by build_starter.py
 explorer/builder.js          interactive student graph and comparison
 explorer/workshop.js         guided full-network analysis and export
 data/records.csv             the record table
 data/name_authority.csv      name decisions with reasons
+data/starter_letters.json    full public-domain letters from Sparks's 1830 edition
 data/README.md               provenance, transformations, limitations
 instructor/TEACHING_GUIDE.md schedule, preparation, likely difficulties, discussion
 instructor/ANSWER_KEY.md     expected outputs and model answers

@@ -7,7 +7,7 @@
 
 The metadata directory's own README (`raw/founders-00README.html`, kept here) describes the file but states no licence. This repository therefore ships only the derived subset described below, which is limited to bibliographic facts (who wrote to whom, when, and the editors' document titles) and permalinks back to Founders Online. `scripts/build_records.py` downloads the full file if `raw/founders-online-metadata.json` is missing; the raw file itself is excluded from the repository by `.gitignore`.
 
-The transcriptions and annotations on Founders Online belong to the editorial projects. Students read them on the site through the permalinks; this repository contains none of them.
+The modern transcriptions and annotations on Founders Online belong to the editorial projects; this repository contains none of that text. The browser's ten complete letters instead come from Jared Sparks's 1830 edition, *The Diplomatic Correspondence of the American Revolution*, volumes [III](https://www.gutenberg.org/ebooks/42355) and [VIII](https://www.gutenberg.org/ebooks/27372). Project Gutenberg identifies both volumes as public domain in the USA; its [license and trademark terms](https://www.gutenberg.org/policy/license.html) are linked here. `starter_letters.json` preserves each letter's printed dateline, salutation, body, and signature, with page markers removed; it also records the printed heading and a link to the complete digitized volume. The printed heading is shown separately because it is editorial information, not part of the letter. The ten letters are matched by date and correspondents to ten individual Founders Online catalog records. Wording in the 1830 edition can differ from the modern editorial transcription.
 
 ## Files
 
@@ -15,6 +15,7 @@ The transcriptions and annotations on Founders Online belong to the editorial pr
 |---|---|---|
 | `records.csv` | 20,747 | Every document in the Franklin, Adams, Jefferson and Jay Papers dated 1 January 1777 – 31 December 1784. Columns: `doc_id`, `edition`, `date` (the `date-from` field), `title`, `authors`, `recipients` (lists joined with ` \| `), `permalink`. |
 | `name_authority.csv` | 34 | Decisions about name variants, made for this lab: `merge` (19), `probable` (4), `keep separate` (11), each with the reason. `variant` is replaced by `canonical` when a decision is applied. |
+| `starter_letters.json` | 10 | Complete public-domain letters from Sparks's 1830 edition, linked to the matching Founders Online catalog record; the generated browser data is in `explorer/starter_data.js`. |
 | `raw/founders-00README.html` | – | The metadata directory's description page, as downloaded. |
 
 Records per edition: Franklin 9,841 · Adams 6,257 · Jefferson 3,800 · Jay 849.

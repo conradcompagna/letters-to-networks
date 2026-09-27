@@ -4,9 +4,11 @@ Figures below are the outputs of the executed notebook with its default argument
 
 ## Browser workshop checks
 
-The ten-record bundle contains a journal without a recipient; Adams's 3 January 1782 letter to Franklin printed in two editions; and two distinct Morris–Franklin letters in opposite directions. Under the production rules, these become 8 document edges and 7 distinct undirected ties. A student's graph can differ because of an explicit, defensible tie rule. Check that they can trace each drawn tie back to a record and explain why they excluded a record.
+The browser bundle contains ten complete letters from Sparks's 1830 edition, each matched to one Founders Online catalog record. The catalog yields ten directed letter edges among seven people, or six distinct undirected pairs. Franklin has five distinct neighbours in this slice; Livingston connects Jay to the Franklin-centered part of the graph. This is a property of the selected letters, not proof that these were the only historical relationships.
 
-For the small graph, students should be able to count one node's unique neighbours by hand and distinguish that degree from the number of document edges. The production comparison reports tie overlap and different weights separately; including both editions of one letter may change a document count without changing the unique tie. In the full graph, a strong historical interpretation uses at least two linked documents and relates a specific claim to degree, betweenness, or community membership while explaining what the computed measure does and what it cannot establish. The app supplies the algorithms and definitions; it does not grade the historical claim.
+The letters include exchanges in both directions between Franklin and Hartley, Franklin and Livingston, Livingston and Jay, and Franklin and Adams. Students should identify writer and addressee from the signature, address, content, and where necessary the separately shown printed heading. Check their evidence notes, especially when a letter says only “Dear Sir” and the addressee has to come from the edition heading or archival catalog. A student who types a variant name may create an extra node; this is a useful opening to discuss name standardization.
+
+The comparison uses the catalog's `authors` and `recipients` fields. In the full graph, a strong 500-word response compares two named people under degree and betweenness, inspects their community positions, cites at least two linked documents, and makes a historically modest claim about their roles. It should also recognize that the four editions favor the people whose papers were collected. The app supplies the measures and definitions; it does not grade the interpretation.
 
 ---
 

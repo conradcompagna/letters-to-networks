@@ -1,74 +1,52 @@
 (() => {
-  const D = window.NET_DATA, explorer = window.networkExplorer, body = document.getElementById("taskBody");
-  const key = "letters-network-analysis-v2";
-  const fresh = () => ({ people: [], claim: "" });
-  let work = fresh();
+  const body = document.getElementById("taskBody");
+  const key = "letters-network-analysis-v3";
+  let work = { name: "", claim: "" };
   try { work = { ...work, ...JSON.parse(localStorage.getItem(key) || "{}") }; } catch (_) {}
-  if (!Array.isArray(work.people)) work.people = [];
-  work.people = work.people.filter((id) => D.views.merged.nodes.some((n) => n.id === id)).slice(0, 2);
   const save = () => { try { localStorage.setItem(key, JSON.stringify(work)); } catch (_) {} };
-  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const words = (s) => (String(s || "").trim().match(/\S+/g) || []).length;
-  const node = (id) => D.views.merged.nodes.find((n) => n.id === id);
-  function addStatus(id) {
-    if (explorer.currentView() !== "merged") return { allowed: false, message: "Use the Four editions view to choose people for a fair comparison." };
-    if (work.people.includes(id)) return { allowed: false, message: "Already in your comparison." };
-    if (work.people.length >= 2) return { allowed: false, message: "Two people selected; remove one below to choose another." };
-    return { allowed: true, message: "Add this person to the historical comparison." };
-  }
-  function personCard(id, i) {
-    const n = node(id), docs = (D.docs[id] || []).slice(0, -1).slice(0, 4);
-    return `<div class="method-card"><div class="task-head"><h3>${i + 1}. ${esc(id)}</h3><button class="action" data-remove="${esc(id)}">Remove</button></div>
-      <p class="note">${n.c} distinct correspondents · ${n.s + n.r} sent/received documents · betweenness ${n.b.toFixed(4)} · community ${n.k + 1} · main edition ${esc(n.e || "unknown")}</p>
-      <div class="task-row"><button class="action" data-open="${esc(id)}">Show on graph</button>
-        ${docs.map(([date, title, docId]) => `<a href="https://founders.archives.gov/documents/${esc(docId)}" target="_blank" rel="noopener">${esc(date)} · ${esc(title)} ↗</a>`).join("")}</div></div>`;
-  }
+
   function render() {
-    body.innerHTML = `<div class="task-head"><h2>Analyze historical relationships</h2><span class="note">${work.people.length}/2 people selected</span></div>
-      <p class="task-copy">In the Four editions view, select two people whose relationship or network positions interest you. The measures below are already calculated; use them to investigate a historical claim and check it against documents.</p>
-      ${work.people.map(personCard).join("") || `<p class="note empty-state">Click a node above, then choose “Use in analysis.”</p>`}
-      <div class="method-card"><h3>Degree · direct contacts</h3><p class="note">Degree counts distinct correspondents, regardless of how many documents they exchanged. Choose “Degree” under Size by, compare your two people, and ask whose correspondence reached more distinct nodes.</p></div>
-      <div class="method-card"><h3>Betweenness · bridging paths</h3><p class="note">Betweenness counts how often a node lies on shortest paths between other nodes in this undirected network. Choose “Betweenness” under Size by; compare the scores with degree, then inspect which visible groups the people connect.</p></div>
-      <div class="method-card"><h3>Communities · dense groups</h3><p class="note">The Louvain algorithm groups nodes with stronger ties within the group than outside it. Switch Colour by between Community and Edition; inspect whether the grouping may reflect correspondence or whose papers the editors collected.</p></div>
-      <label class="task-field" for="claim">Historical interpretation · about 700–900 words
-        <textarea id="claim" placeholder="Make a claim about these people's historical relations. Use degree, betweenness or communities, cite at least two linked documents, and explain what the network alone cannot establish.">${esc(work.claim)}</textarea></label>
-      <div class="task-row"><span class="word-count" id="claimCount">${words(work.claim)} words</span><button class="action primary" id="downloadLab">Download lab work</button></div>`;
+    body.innerHTML = `<div class="task-head"><h2>Analyze the full network</h2></div>
+      <p class="task-copy">Use the graph controls and linked source letters to test how the measures change your reading of correspondence.</p>
+      <ol class="analysis-steps">
+        <li>Set <b>Size by</b> to <b>Degree</b>, the number of distinct correspondents, and inspect the largest nodes.</li>
+        <li>Switch to <b>Betweenness</b>, how often someone sits on the shortest path between others, and find a changed ranking.</li>
+        <li>Set <b>Colour by</b> to <b>Community</b>, a group with comparatively dense internal ties; inspect two linked letters.</li>
+      </ol>
+      <label class="task-field" for="claim"><b>500-word response</b> Which correspondent's importance changes when you switch from degree to betweenness, and why? Compare that person with another named correspondent. Use their ties, community positions, and at least two linked letters to argue what their network positions reveal about their historical roles and how the four edited collections might shape the pattern.
+        <textarea id="claim" placeholder="Make your claim and cite the letters you inspected…">${esc(work.claim)}</textarea></label>
+      <div class="submission-row"><label class="task-field" for="studentName">Name or student ID<input id="studentName" value="${esc(work.name)}" autocomplete="name" placeholder="Your name or ID"></label>
+        <span class="word-count" id="claimCount">${words(work.claim)} / 500 words</span>
+        <button class="action primary" id="downloadLab">Download assignment to submit</button></div>
+      <p class="note" id="submissionStatus" role="status" aria-live="polite">Download the text file and submit it in your course site.</p>`;
   }
   function download() {
-    const lines = ["LETTERS TO NETWORKS — STUDENT LAB", "",
-      window.networkBuilder?.exportText() || "", "", "FULL NETWORK ANALYSIS",
-      "People: " + (work.people.join(" and ") || "none selected")];
-    for (const id of work.people) {
-      const n = node(id);
-      lines.push(id + ": degree " + n.c + ", document edges " + (n.s + n.r) +
-        ", betweenness " + n.b.toFixed(4) + ", community " + (n.k + 1) + ", main edition " + n.e);
-    }
-    lines.push("", "HISTORICAL INTERPRETATION", work.claim);
+    const count = words(work.claim), status = body.querySelector("#submissionStatus");
+    if (!work.name.trim()) { status.textContent = "Enter your name or student ID."; return; }
+    if (count < 450) { status.textContent = "Write about 500 words before downloading (at least 450)."; return; }
+    const lines = ["LETTERS TO NETWORKS — STUDENT ASSIGNMENT", `Student: ${work.name.trim()}`,
+      "", window.networkBuilder.exportText(), "", "FULL NETWORK RESPONSE", work.claim,
+      "", `Response word count: ${count}`];
     const url = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" }));
-    const a = document.createElement("a"); a.href = url; a.download = "letters-network-lab.txt";
-    a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    const a = document.createElement("a"); a.href = url;
+    a.download = "letters-network-assignment.txt"; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    status.textContent = "Assignment downloaded. Submit the file in your course site.";
   }
-  body.addEventListener("click", (e) => {
-    const b = e.target.closest("button"); if (!b) return;
-    if (b.dataset.remove) {
-      work.people = work.people.filter((id) => id !== b.dataset.remove);
-      save(); render(); explorer.refresh();
-    } else if (b.dataset.open) explorer.select(b.dataset.open);
-    else if (b.id === "downloadLab") download();
+  body.addEventListener("input", (event) => {
+    if (event.target.id === "claim") {
+      work.claim = event.target.value;
+      body.querySelector("#claimCount").textContent = `${words(work.claim)} / 500 words`;
+    } else if (event.target.id === "studentName") work.name = event.target.value;
+    else return;
+    save();
   });
-  body.addEventListener("input", (e) => {
-    if (e.target.id !== "claim") return;
-    work.claim = e.target.value; save();
-    body.querySelector("#claimCount").textContent = words(work.claim) + " words";
+  body.addEventListener("click", (event) => {
+    if (event.target.id === "downloadLab") download();
   });
-  window.networkWorkshop = {
-    markedIds: () => work.people,
-    addStatus,
-    addPerson(id, view) {
-      if (view !== "merged" || !addStatus(id).allowed || !node(id)) return;
-      work.people.push(id); save(); render(); explorer.refresh();
-    },
-    onReveal: render,
-  };
-  render(); explorer.refresh();
+  window.networkWorkshop = { onReveal: render };
+  render();
 })();

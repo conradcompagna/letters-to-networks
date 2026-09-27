@@ -46,24 +46,25 @@ header p { margin: 0; color: var(--ink-2); max-width: 70ch; }
 #fullLab { display: grid; gap: 16px; }
 .builder { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; }
 .builder h3 { font: 600 18px/1.25 var(--serif); margin: 0; }
-.builder-layout { display: grid; grid-template-columns: minmax(0, 1fr) 350px; gap: 16px; align-items: start; margin-top: 14px; }
+.builder-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 510px); gap: 16px; align-items: start; margin-top: 14px; }
 .build-canvas, .source-panel { border: 1px solid var(--rule); border-radius: 9px; background: var(--panel); padding: 14px; }
 .build-canvas { min-width: 0; }
 .build-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
 .build-toolbar .note { max-width: 42ch; }
 .mini-graph { width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 7px; background: var(--bg); touch-action: none; }
 .mini-graph text { font-family: var(--sans); fill: var(--ink); pointer-events: none; }
-.mini-graph .tie { stroke: var(--focus); stroke-width: 3; stroke-linecap: round; }
+.mini-graph .tie { fill: none; stroke: var(--focus); stroke-width: 3; stroke-linecap: round; }
 .mini-graph .tie.active { stroke: var(--franklin); stroke-width: 5; }
+.mini-graph .empty-graph { fill: var(--ink-3); font: 14px var(--sans); }
 .mini-graph .tie-weight { fill: var(--panel); stroke: var(--focus); stroke-width: 1.5; }
 .mini-graph .person { cursor: crosshair; }
 .mini-graph .person circle, .mini-graph .person-static circle { fill: var(--panel); stroke: var(--focus); stroke-width: 3; }
 .mini-graph .person.pending circle, .mini-graph .person:hover circle, .mini-graph .person:focus-visible circle { fill: var(--hover); stroke-width: 5; }
 .mini-graph .person:focus-visible { outline: none; }
 .mini-graph .drag-line { stroke: var(--franklin); stroke-width: 3; stroke-dasharray: 6 5; pointer-events: none; }
-.source-panel { display: grid; gap: 10px; position: sticky; top: 12px; }
+.source-panel { display: grid; gap: 10px; }
 .source-panel h3 { margin: 0; }
-.record-deck { display: grid; gap: 5px; max-height: 290px; overflow: auto; padding-right: 4px; }
+.record-deck { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
 .record-tab { width: 100%; display: grid; grid-template-columns: 24px 1fr auto; gap: 6px; align-items: start; text-align: left; border: 1px solid var(--rule); border-radius: 6px; padding: 8px; background: var(--panel); color: var(--ink); font: 12px/1.3 var(--sans); cursor: pointer; }
 .record-tab:hover, .record-tab[aria-current="true"] { border-color: var(--focus); background: var(--hover); }
 .record-tab .record-num { color: var(--ink-3); font-family: var(--mono); }
@@ -72,6 +73,15 @@ header p { margin: 0; color: var(--ink-2); max-width: 70ch; }
 .record-reader h4 { margin: 0; font: 600 16px/1.3 var(--sans); }
 .record-reader p { margin: 0; }
 .record-reader .task-row { margin: 0; }
+.reader-heading { display: flex; align-items: baseline; justify-content: space-between; }
+.letter-text { max-height: 390px; overflow: auto; padding: 16px 18px; border: 1px solid var(--rule); border-radius: 7px; background: var(--bg); font: 16px/1.55 var(--serif); }
+.letter-text p + p { margin-top: .9em; }
+.reader-source { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; font-size: 12px; }
+.reader-source details p { margin: 5px 0 0; }
+.reader-source summary { cursor: pointer; color: var(--ink-2); }
+.letter-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.letter-fields label { display: grid; gap: 4px; font-size: 12px; color: var(--ink-2); }
+.letter-fields input { width: 100%; min-width: 0; padding: 8px; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); color: var(--ink); font: 13px var(--sans); }
 .build-status { min-height: 20px; margin-top: 8px; }
 .compare-panel { margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 18px; display: grid; gap: 12px; }
 .compare-graphs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
@@ -82,8 +92,13 @@ header p { margin: 0; color: var(--ink-2); max-width: 70ch; }
 .method-card h3 { margin: 0 0 6px; }
 .method-card select { font: 13px var(--sans); padding: 6px 8px; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); color: var(--ink); }
 .method-card a { font-size: 12px; max-width: 100%; overflow-wrap: anywhere; }
-.analysis textarea { min-height: 160px; }
+.analysis textarea { min-height: 300px; }
 .analysis h3 { font: 600 18px/1.25 var(--serif); margin: 0; }
+.analysis-steps { display: grid; gap: 6px; margin: 12px 0 20px; padding-left: 22px; }
+.analysis-steps li { padding-left: 4px; }
+.submission-row { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+.submission-row .task-field { margin: 0; min-width: 220px; }
+.submission-row input { padding: 8px; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); color: var(--ink); font: 13px var(--sans); }
 .reading-list { display: grid; gap: 12px; margin-top: 18px; }
 .reading-card { border: 1px solid var(--rule); border-radius: 8px; padding: 15px; }
 .reading-card textarea { min-height: 155px; }
@@ -167,7 +182,7 @@ tbody tr { cursor: pointer; }
 tbody tr:hover { background: var(--hover); }
 footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 10px; }
 @media (max-width: 1100px) { .grid { grid-template-columns: 210px minmax(0, 1fr); } .grid > aside.right { grid-column: 1 / -1; } .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 850px) { .builder-layout { grid-template-columns: minmax(0, 1fr); } .source-panel { position: static; } }
+@media (max-width: 850px) { .builder-layout { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 720px) { .grid, .compare-graphs { grid-template-columns: minmax(0, 1fr); } .case-grid, .evidence-grid { grid-template-columns: minmax(0, 1fr); } .stage { height: 60vh; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -177,17 +192,17 @@ footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule)
     <h1>Letters to Networks</h1>
   </header>
 
-  <section class="builder" id="builder" aria-label="Build a network from records">
-    <div class="task-head"><h2>Build a network</h2><span class="note" id="buildProgress">0 / 10 documents decided</span></div>
+  <section class="builder" id="builder" aria-label="Build a network from letters">
+    <div class="task-head"><h2>Read ten letters. Build a network.</h2><span class="note" id="buildProgress">0 / 10 letters added</span></div>
     <div class="builder-layout">
       <div class="build-canvas">
-        <div class="build-toolbar"><p class="note">Choose a document. Drag between two people to add its tie; click two names if you prefer.</p><button class="action primary" id="revealFull" disabled>Compare and explore full network</button></div>
-        <svg class="mini-graph" id="miniGraph" viewBox="0 0 800 500" role="group" aria-label="Your network: people begin unconnected; connect them using evidence from the documents"></svg>
+        <div class="build-toolbar"><p class="note">Read each complete letter; identify its writer and addressee to draw a directed tie.</p><button class="action primary" id="revealFull" disabled>Reveal full network</button></div>
+        <svg class="mini-graph" id="miniGraph" viewBox="0 0 800 500" role="img" aria-label="Your network, built from the letters you have read"></svg>
         <p class="note build-status" id="buildStatus" role="status" aria-live="polite"></p>
         <p class="note" id="miniStats"></p>
       </div>
-      <aside class="source-panel" aria-label="Source documents">
-        <h3>Ten source records</h3>
+      <aside class="source-panel" aria-label="Full letters">
+        <h3>Full letters</h3>
         <div class="record-deck" id="recordDeck"></div>
         <div class="record-reader" id="recordReader"></div>
       </aside>
@@ -195,11 +210,10 @@ footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule)
     <div class="compare-panel" id="comparePanel" hidden>
       <div><h3>Compare the builds</h3><p class="note" id="compareIntro"></p></div>
       <div class="compare-graphs">
-        <div><h4>Your ten records</h4><svg class="mini-graph" id="studentCompareGraph" viewBox="0 0 800 500" role="img" aria-label="Your network for the ten records"></svg></div>
-        <div><h4>Production rules on the same records</h4><svg class="mini-graph" id="referenceGraph" viewBox="0 0 800 500" role="img" aria-label="Production network for the same ten records"></svg></div>
+        <div><h4>Your ten letters</h4><svg class="mini-graph" id="studentCompareGraph" viewBox="0 0 800 500" role="img" aria-label="Your network for the ten letters"></svg></div>
+        <div><h4>Archive catalog on the same letters</h4><svg class="mini-graph" id="referenceGraph" viewBox="0 0 800 500" role="img" aria-label="Catalog network for the same ten letters"></svg></div>
       </div>
       <div class="comparison-list" id="compareList"></div>
-      <label class="task-field" for="buildReflection">What rule did you use to make a tie, and which source decisions explain any differences? · about 200 words<textarea id="buildReflection" placeholder="Refer to specific documents…"></textarea></label>
     </div>
   </section>
 
@@ -255,7 +269,7 @@ footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule)
   </div>
 
   <footer>
-    Founders Online metadata, 1777–1784. Measures use the whole network; the drawing filters for legibility. <a href="../data/README.md">Data and limits</a> · <a href="../lab.ipynb">Notebook</a>
+    Ten complete letters from Sparks's 1830 edition; full network from Founders Online metadata, 1777–1784. <a href="../data/README.md">Sources and method</a>
   </footer>
 </div>
 
@@ -379,9 +393,6 @@ footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule)
       ctx.fillStyle = dim ? other : colorOf(n); ctx.globalAlpha = dim ? 0.35 : 1; ctx.fill();
       ctx.globalAlpha = 1; ctx.lineWidth = 1.2; ctx.strokeStyle = halo; ctx.stroke();
     }
-    const marked = new Set(window.networkWorkshop?.markedIds() || []);
-    ctx.strokeStyle = css("--ink"); ctx.lineWidth = 2;
-    for (const n of nodes) if (marked.has(n.id)) { ctx.beginPath(); ctx.arc(sx(n), sy(n), radius(n) + 3, 0, 2 * Math.PI); ctx.stroke(); }
     // labels: focused node, its neighbours when few, and the largest nodes
     ctx.font = `500 11.5px ${css("--sans")}`; ctx.textBaseline = "middle";
     const labelled = focus ? [focus, ...[...near].map((id) => byId.get(id)).sort((a, b) => b.L - a.L).slice(0, 6)]
@@ -421,22 +432,15 @@ footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule)
     }
     const docs = D.docs[n.id] || [], total = docs.length ? docs[docs.length - 1] : 0, list = docs.slice(0, -1);
     const neigh = [...adj.get(n.id)].map((id) => byId.get(id)).sort((a, b) => b.L - a.L).slice(0, 6).map((m) => short(m.id)).join("; ");
-    const addStatus = window.networkWorkshop?.addStatus(n.id) || { allowed: false, message: "Choose a correspondent." };
     el.innerHTML = `<p class="eyebrow">Selected correspondent</p><h2>${esc(n.id)}</h2>
       <dl class="kv" style="margin:10px 0">
         <dt>Type</dt><dd>${n.t}</dd><dt>Sent / received</dt><dd>${n.s.toLocaleString()} / ${n.r.toLocaleString()}</dd>
         <dt>Correspondents</dt><dd>${n.c.toLocaleString()}</dd><dt>Betweenness</dt><dd>${n.b.toFixed(4)}</dd>
         <dt>Main edition</dt><dd>${n.e || "–"}</dd><dt>Community</dt><dd>${n.k + 1}</dd></dl>
       <p class="note" style="margin-bottom:10px"><b>Largest ties shown:</b> ${esc(neigh || "–")}</p>
-      <button class="action" id="addPerson" ${addStatus.allowed ? "" : "disabled"}>Use in analysis</button>
-      <p class="note">${esc(addStatus.message)}</p>
       <p class="eyebrow">Source links · four editions (${list.length < total ? `sample of ${total}` : total})</p>
       <ul class="docs">${list.map(([d, t, id]) => `<li><time>${d}</time><a href="https://founders.archives.gov/documents/${id}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join("")}</ul>`;
   }
-  document.getElementById("detail").addEventListener("click", (e) => {
-    const button = e.target.closest("#addPerson");
-    if (button && window.networkWorkshop && state.sel) window.networkWorkshop.addPerson(state.sel.id, state.view);
-  });
 
   // interaction
   let drag = null;
