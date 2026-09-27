@@ -46,21 +46,37 @@ header p { margin: 0; color: var(--ink-2); max-width: 70ch; }
 #fullLab { display: grid; gap: 16px; }
 .builder { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; }
 .builder h3 { font: 600 18px/1.25 var(--serif); margin: 0; }
-.definition-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
-.builder-layout { display: grid; grid-template-columns: minmax(0, 1fr) 390px; gap: 16px; align-items: start; }
-.record-deck { display: grid; gap: 9px; max-height: 650px; overflow: auto; padding-right: 5px; margin-top: 10px; }
-.record-card { border: 1px solid var(--rule); border-radius: 8px; padding: 12px; display: grid; gap: 7px; }
-.record-card header { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-.record-card h4 { margin: 0; font: 600 14px/1.3 var(--sans); }
-.record-card p { margin: 0; }
-.record-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
-.record-fields label { display: grid; gap: 3px; min-width: 0; font-size: 12px; color: var(--ink-2); }
-.record-fields input, .record-card select, .definition-grid input { width: 100%; min-width: 0; font: 13px var(--sans); padding: 7px 8px; border: 1px solid var(--rule); border-radius: 5px; background: var(--panel); color: var(--ink); }
-.builder-side { display: grid; gap: 12px; position: sticky; top: 12px; }
-.mini-graph { width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 7px; background: var(--bg); }
-.mini-graph text { font-family: var(--sans); fill: var(--ink); }
-.comparison-list { max-height: 170px; overflow: auto; }
-.comparison-list p { border-top: 1px solid var(--rule-2); padding: 4px 0; margin: 0; }
+.builder-layout { display: grid; grid-template-columns: minmax(0, 1fr) 350px; gap: 16px; align-items: start; margin-top: 14px; }
+.build-canvas, .source-panel { border: 1px solid var(--rule); border-radius: 9px; background: var(--panel); padding: 14px; }
+.build-canvas { min-width: 0; }
+.build-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.build-toolbar .note { max-width: 42ch; }
+.mini-graph { width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 7px; background: var(--bg); touch-action: none; }
+.mini-graph text { font-family: var(--sans); fill: var(--ink); pointer-events: none; }
+.mini-graph .tie { stroke: var(--focus); stroke-width: 3; stroke-linecap: round; }
+.mini-graph .tie.active { stroke: var(--franklin); stroke-width: 5; }
+.mini-graph .tie-weight { fill: var(--panel); stroke: var(--focus); stroke-width: 1.5; }
+.mini-graph .person { cursor: crosshair; }
+.mini-graph .person circle, .mini-graph .person-static circle { fill: var(--panel); stroke: var(--focus); stroke-width: 3; }
+.mini-graph .person.pending circle, .mini-graph .person:hover circle, .mini-graph .person:focus-visible circle { fill: var(--hover); stroke-width: 5; }
+.mini-graph .person:focus-visible { outline: none; }
+.mini-graph .drag-line { stroke: var(--franklin); stroke-width: 3; stroke-dasharray: 6 5; pointer-events: none; }
+.source-panel { display: grid; gap: 10px; position: sticky; top: 12px; }
+.source-panel h3 { margin: 0; }
+.record-deck { display: grid; gap: 5px; max-height: 290px; overflow: auto; padding-right: 4px; }
+.record-tab { width: 100%; display: grid; grid-template-columns: 24px 1fr auto; gap: 6px; align-items: start; text-align: left; border: 1px solid var(--rule); border-radius: 6px; padding: 8px; background: var(--panel); color: var(--ink); font: 12px/1.3 var(--sans); cursor: pointer; }
+.record-tab:hover, .record-tab[aria-current="true"] { border-color: var(--focus); background: var(--hover); }
+.record-tab .record-num { color: var(--ink-3); font-family: var(--mono); }
+.record-tab .record-state { color: var(--ink-2); font-size: 11px; white-space: nowrap; }
+.record-reader { border-top: 1px solid var(--rule); padding-top: 12px; display: grid; gap: 9px; }
+.record-reader h4 { margin: 0; font: 600 16px/1.3 var(--sans); }
+.record-reader p { margin: 0; }
+.record-reader .task-row { margin: 0; }
+.build-status { min-height: 20px; margin-top: 8px; }
+.compare-panel { margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 18px; display: grid; gap: 12px; }
+.compare-graphs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.compare-graphs h4 { margin: 0 0 6px; }
+.comparison-list p { border-top: 1px solid var(--rule-2); padding: 5px 0; margin: 0; }
 .method-card { border: 1px solid var(--rule); border-radius: 8px; padding: 14px; margin: 12px 0; }
 .method-card p { margin: 6px 0; }
 .method-card h3 { margin: 0 0 6px; }
@@ -150,8 +166,9 @@ td.num { font-family: var(--mono); text-align: right; font-variant-numeric: tabu
 tbody tr { cursor: pointer; }
 tbody tr:hover { background: var(--hover); }
 footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 10px; }
-@media (max-width: 1100px) { .grid { grid-template-columns: 210px minmax(0, 1fr); } .grid > aside.right { grid-column: 1 / -1; } .builder-layout { grid-template-columns: minmax(0, 1fr); } .builder-side { position: static; } .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 720px) { .grid, .definition-grid, .record-fields { grid-template-columns: minmax(0, 1fr); } .case-grid, .evidence-grid { grid-template-columns: minmax(0, 1fr); } .stage { height: 60vh; } }
+@media (max-width: 1100px) { .grid { grid-template-columns: 210px minmax(0, 1fr); } .grid > aside.right { grid-column: 1 / -1; } .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 850px) { .builder-layout { grid-template-columns: minmax(0, 1fr); } .source-panel { position: static; } }
+@media (max-width: 720px) { .grid, .compare-graphs { grid-template-columns: minmax(0, 1fr); } .case-grid, .evidence-grid { grid-template-columns: minmax(0, 1fr); } .stage { height: 60vh; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
@@ -161,32 +178,28 @@ footer { font-size: 12px; color: var(--ink-3); border-top: 1px solid var(--rule)
   </header>
 
   <section class="builder" id="builder" aria-label="Build a network from records">
-    <div class="task-head"><h2>Build a network</h2><span class="note">15 real records · January–February 1782</span></div>
-    <p class="task-copy">Read the metadata and linked documents, define nodes and ties, then enter the names each included document connects. Use | between multiple names; the app makes every sender–recipient pair. The graph combines both directions into one tie and counts repeated documents separately. The full network appears after you build this slice.</p>
-    <div class="definition-grid">
-      <label class="task-field" for="nodeRule">What does a node represent?<input id="nodeRule" type="text" placeholder="E.g. one named correspondent or body"></label>
-      <label class="task-field" for="tieRule">When does a document create a tie?<input id="tieRule" type="text" placeholder="E.g. a letter with a named sender and recipient"></label>
-    </div>
+    <div class="task-head"><h2>Build a network</h2><span class="note" id="buildProgress">0 / 10 documents decided</span></div>
     <div class="builder-layout">
-      <div><h3>Records</h3><p class="note">Classify every record. For a tie, enter its source and target names; edit names if two forms refer to the same person.</p><div class="record-deck" id="recordDeck"></div></div>
-      <aside class="builder-side">
-        <div class="panel">
-          <div><h3>Your network</h3><p class="note" id="buildStatus">Review the records, then build your graph.</p></div>
-          <button class="action primary" id="buildGraph">Build network</button>
-          <div id="miniResult" hidden>
-            <p class="note" id="miniStats"></p>
-            <svg class="mini-graph" id="miniGraph" viewBox="0 0 480 430" role="img" aria-label="Your network graph"></svg>
-            <div id="miniMetrics"></div>
-          </div>
-          <button class="action primary" id="revealFull" hidden>Reveal and compare the full network</button>
-        </div>
-        <div class="panel" id="comparePanel" hidden>
-          <div><h3>Compare the builds</h3><p class="note" id="compareIntro"></p></div>
-          <div><p class="eyebrow">Production network · same 15 records</p><svg class="mini-graph" id="referenceGraph" viewBox="0 0 480 430" role="img" aria-label="Production network for the same record bundle"></svg></div>
-          <div class="comparison-list" id="compareList"></div>
-          <label class="task-field" for="buildReflection">Which construction decisions explain the differences? · about 200 words<textarea id="buildReflection" placeholder="Refer to particular records or name decisions…"></textarea></label>
-        </div>
+      <div class="build-canvas">
+        <div class="build-toolbar"><p class="note">Choose a document. Drag between two people to add its tie; click two names if you prefer.</p><button class="action primary" id="revealFull" disabled>Compare and explore full network</button></div>
+        <svg class="mini-graph" id="miniGraph" viewBox="0 0 800 500" role="group" aria-label="Your network: people begin unconnected; connect them using evidence from the documents"></svg>
+        <p class="note build-status" id="buildStatus" role="status" aria-live="polite"></p>
+        <p class="note" id="miniStats"></p>
+      </div>
+      <aside class="source-panel" aria-label="Source documents">
+        <h3>Ten source records</h3>
+        <div class="record-deck" id="recordDeck"></div>
+        <div class="record-reader" id="recordReader"></div>
       </aside>
+    </div>
+    <div class="compare-panel" id="comparePanel" hidden>
+      <div><h3>Compare the builds</h3><p class="note" id="compareIntro"></p></div>
+      <div class="compare-graphs">
+        <div><h4>Your ten records</h4><svg class="mini-graph" id="studentCompareGraph" viewBox="0 0 800 500" role="img" aria-label="Your network for the ten records"></svg></div>
+        <div><h4>Production rules on the same records</h4><svg class="mini-graph" id="referenceGraph" viewBox="0 0 800 500" role="img" aria-label="Production network for the same ten records"></svg></div>
+      </div>
+      <div class="comparison-list" id="compareList"></div>
+      <label class="task-field" for="buildReflection">What rule did you use to make a tie, and which source decisions explain any differences? · about 200 words<textarea id="buildReflection" placeholder="Refer to specific documents…"></textarea></label>
     </div>
   </section>
 

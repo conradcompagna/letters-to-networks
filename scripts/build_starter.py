@@ -12,21 +12,16 @@ sys.path.insert(0, ROOT)
 import netlab as nl  # noqa: E402
 
 DOC_IDS = [
-    "Franklin/01-36-02-0245",       # journal: no recipient
     "Adams/06-12-02-0115",          # Adams -> Franklin
-    "Franklin/01-36-02-0252",       # same letter in Franklin edition
     "Franklin/01-36-02-0249",       # Hartley -> Franklin
     "Franklin/01-36-02-0250",       # Morris -> Franklin
     "Franklin/01-36-02-0267",       # Livingston -> Franklin
     "Adams/06-12-02-0119",          # Livingston -> Adams
-    "Franklin/01-36-02-0274",       # Franklin -> Morris
+    "Franklin/01-36-02-0274",       # Franklin -> Morris (another document)
     "Franklin/01-36-02-0279",       # Dumas -> Franklin
     "Franklin/01-36-02-0285",       # Jay -> Franklin
-    "Jay/01-02-02-0286",            # same letter in Jay edition
-    "Adams/06-12-02-0124",          # group and person in recipients
-    "Adams/06-12-02-0147-0001",     # Dumas name variant -> Adams
-    "Adams/06-12-02-0165",          # Adams -> Dumas
-    "Adams/06-12-02-0172",          # Adams -> Jay
+    "Franklin/01-36-02-0252",       # same Adams letter in Franklin edition
+    "Franklin/01-36-02-0245",       # journal: no recipient
 ]
 
 
@@ -52,7 +47,7 @@ def main():
             [r.doc_id, r.source, r.target]
             for r in edges.itertuples(index=False)
         ],
-        "referenceRule": "One sender–recipient tie per document; use the name authority, prefer individuals when a group and its members are both named, and remove cross-edition duplicate letters.",
+        "referenceRule": "One tie for each correspondence document with named people at both ends; remove cross-edition duplicate printings of the same letter.",
     }
     dest = os.path.join(ROOT, "explorer", "starter_data.js")
     with open(dest, "w", encoding="utf-8") as f:

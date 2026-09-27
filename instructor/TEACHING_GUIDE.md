@@ -10,24 +10,24 @@ The case (American diplomacy in Europe, 1777–1784) needs no specialist backgro
 
 - **Install once** (instructor or lab technician): Python 3.10+ and `pip install -r requirements.txt`. Or upload the repository to a JupyterHub or Google Colab; the notebook needs only the files in this repository.
 - **Check the run time** on the classroom machines: *Run All* takes about 1–2 minutes on a recent laptop. Most of it is Stage 9 (40 network rebuilds). If machines are slow, tell students to skip Stage 9 or set `reps=5`.
-- **Open the explorer** (`explorer/index.html`) on the projector. It starts with the record bundle and reveals the four network views after students build; it needs no installation.
+- **Open the explorer** (`explorer/index.html`) on the projector. It starts with seven unconnected people beside ten source records and reveals the four network views after students build; it needs no installation.
 - **Read** `data/README.md` and the answer key.
 - **Optional pre-reading** (15 minutes): a short introduction to historical network analysis, e.g. the *Programming Historian* lesson "Exploring and Analyzing Network Data with Python" (Ladd, Otis, Warren and Weingart, 2017), sections on centrality.
 
 ## Browser workshop (90 minutes)
 
-Use `explorer/index.html` as the student workspace. The full visualization is initially hidden. Students build a network from 15 actual records, compare their result with the production transformation of those same records, and then use the full network and supplied algorithms to make a historical interpretation. The single learning goal is to build and analyze a network.
+Use `explorer/index.html` as the student workspace. Students first see an empty graph with seven people. They use ten actual records to draw ties, compare their result with the production transformation of those same records, and then use the full network and supplied algorithms to make a historical interpretation. The single learning goal is to build and analyze a network.
 
 | Time | Student action |
 |---|---|
-| 0–10 | Define nodes and ties together using one example record; distinguish a document from a unique tie. |
-| 10–40 | Students inspect all 15 records, decide which create ties, reconcile names, and enter the edges in the app. Ask them to explain the journal, duplicate editions, Dumas variant, and group recipient. |
-| 40–50 | Build the student graph; count one node's distinct neighbours by hand and check the app's degree and document count. |
-| 50–65 | Reveal the production build on the same records; identify ties present only in one version and explain the underlying record decisions. Then reveal the full four-edition network. |
+| 0–10 | Use the unconnected graph to define a person node and a correspondence tie; open the first source and draw one tie together. |
+| 10–40 | Students read the ten linked documents and connect people directly on the graph, or mark a record "No tie." Ask why the journal and duplicate printing need different decisions. |
+| 40–50 | Count one person's distinct neighbours and the documents behind those ties by hand on the student graph. |
+| 50–65 | Compare the student graph with the production build on the same records; identify differences and state the tie rule that produced them. Then examine the full four-edition network. |
 | 65–85 | In the Four editions view, choose two people and use degree, betweenness, community, and linked documents to test a historical interpretation. |
 | 85–90 | Discuss one claim that the graph supports and one that still needs source reading; download the lab file and finish the interpretation after class. |
 
-An internet connection is needed for the Founders Online transcriptions; the records, graph builder, and full-network visualization run offline. The production comparison is a reference transformation, not an answer key: different node or tie definitions can be defensible if students explain them. The interface checks that every record has been reviewed and that included ties have endpoints; assess the quality of decisions and historical claims yourself. Use the notebook schedule below when the goal is to run and modify the full analysis.
+An internet connection is needed for the Founders Online transcriptions; the records, graph builder, and full-network visualization run offline. The production comparison is a reference transformation, not an answer key: different tie rules can be defensible if students explain them. The interface checks that every record has a decision before comparison; assess the quality of decisions and historical claims yourself. Use the notebook schedule below when the goal is to run and modify the full analysis.
 
 ## Notebook schedule (90 minutes)
 
