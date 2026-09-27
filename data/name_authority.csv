@@ -1,0 +1,35 @@
+variant,canonical,decision,basis
+"Dumas, Charles William Frederick","Dumas, Charles-Guillaume-Frédéric",merge,"same agent at The Hague; Adams Papers anglicise, Franklin Papers use French form"
+"Schweighauser, John Daniel","Schweighauser, Jean-Daniel",merge,American commercial agent at Nantes; anglicised vs French form
+"Grand, Ferdinand","Grand, Rodolphe-Ferdinand",merge,Paris banker to the commissioners; short vs full form
+"Wright, Patience Lovell","Wright, Patience",merge,wax modeller; with and without maiden name
+"Jay, Sarah","Jay, Sarah Livingston",merge,wife of John Jay; short vs full form
+Thomas Jefferson,"Jefferson, Thomas",merge,inverted-name form
+"Congress, President of",President of Congress,merge,"same office, inverted form"
+"Townshend, Thomas, first Viscount (Sydney)","Townshend, Thomas",merge,"same person (Secretary of State 1782-83; created Baron Sydney 1783, Viscount 1789)"
+"Thaxter, John, Jr.","Thaxter, John",merge,John Adams's private secretary; generational suffix used in one edition only
+"Gellée, Nicolas Maurice","Gellée, Nicolas-Maurice",merge,hyphenation
+"Capellen tot den Pol, Joan Derk van der","Capellen tot den Pol, Joan Derk, Baron van der",merge,title included in one edition only
+"Cadet de Vaux, Antoine-Alexis","Cadet de Vaux, Antoine-Alexis-François",merge,short vs full given names
+"La Vauguyon, Paul-François de Quélen de Stuer de Caussade, duc de","La Vauguyon, Paul François de Quélen de Stuer de Causade, Duc de",merge,French ambassador at The Hague; spelling of Caussade
+"Aranda, Pedro Pablo Abarca de Bolea, Conde de","Aranda, Pedro Pablo Abarca de Bolea, count de",merge,Spanish ambassador at Versailles; title language
+"Livingston, Musco","Livingston, Muscoe",merge,spelling of given name
+"La Lande & Fynje, De","La Lande & Fynje, de (business)",merge,Amsterdam firm; capitalisation and type note
+"Horneca, Fizeaux & Cie.","Horneca, Fizeaux & Co. (business)",merge,Amsterdam firm; Cie./Co.
+"Fizeaux, Grand & Cie.","Fizeaux, Grand & Co.",merge,Amsterdam firm; Cie./Co.
+First Joint Commission at Paris,American Commissioners,merge,"the commission of Franklin, Deane (then Adams) and Lee, 1776-79: the Adams Papers name it 'First Joint Commission at Paris', the Franklin Papers 'American Commissioners'; the Franklin Papers also list the members, the Adams Papers often do not"
+"Williams, Jonathan","Williams, Jonathan Jr.",probable,"Adams Papers form lacks suffix; most letters concern the Nantes agency of Jonathan Williams Jr., but his father also corresponded -- check before merging"
+"Cushing, Thomas Sr.","Cushing, Thomas",probable,likely the Massachusetts politician in both editions; suffix used in one edition only
+"Boudinot, Elias, Jr.","Boudinot, Elias",probable,suffix inconsistency; check individual documents
+"Dana, Francis M.","Dana, Francis",probable,middle initial appears in Franklin Papers only; check individual documents
+"Adams, John Quincy","Adams, John",keep separate,father and son; string similarity is high but these are different people
+"Adams, Abigail (daughter of JA and AA)","Adams, Abigail",keep separate,mother and daughter
+"Franklin, William","Franklin, William Temple",keep separate,Franklin's loyalist son vs. his grandson and secretary
+"Williams, Jonathan Sr.","Williams, Jonathan Jr.",keep separate,father and son
+"Vaughan, Samuel, Jr.","Vaughan, Samuel",keep separate,father and son
+"Madison, Rev. James","Madison, James",keep separate,cousin (president of William & Mary) vs. the politician
+"Lee, Henry","Lee, Richard Henry",keep separate,different people
+"Harrison, Benjamin, Jr.","Harrison, Benjamin",keep separate,different people
+"Neufville, Jean (John) de","Neufville, Jean de, & fils",keep separate,a person and his firm: decide whether firms and principals are one node
+"Nesbitt, Jonathan, & Co.","Nesbitt, Jonathan",keep separate,a firm and its principal
+American Peace Commissioners,American Commissioners,keep separate,different bodies: the 1776-79 commission to France vs. the 1782-83 peace commission
