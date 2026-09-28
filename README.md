@@ -1,81 +1,45 @@
-# From Letters to Networks
+# Letters to Networks
 
-A weekly classroom lab on historical correspondence networks, with source-based writing completed after the 90-minute session.
+A digital humanities methods lab in which a class builds an evidence-backed relationship network from historical letters.
 
-[Open the browser lab](https://conradcompagna.github.io/letters-to-networks/explorer/)
+[Open the public sample and individual assignment preview](https://conradcompagna.github.io/letters-to-networks/explorer/)
 
-**Course:** Natural Language Processing and Large Language Models for Historical Research · **Level:** upper-year undergraduate or MA; no programming experience needed · **Format:** Jupyter notebook plus a browser explorer · **Data:** 20,747 documents from the Franklin, Adams, Jefferson and Jay Papers on Founders Online, 1777–1784
+## Classroom activity
 
-![Merged network with the four editors removed](assets/network_core.png)
+Thirty students each receive **ten different complete letters**: 300 letters in all. The letters are transcribed from Jared Sparks's public-domain *Diplomatic Correspondence of the American Revolution* and matched to the author and recipient fields of the corresponding Founders Online catalog records. The resulting classroom corpus has 43 fixed person nodes and 81 directed correspondence ties. No student has to identify all 43 people or read all 300 letters.
 
-The lab is about method. Diplomacy in Paris, Madrid and The Hague supplies the case because it is well documented in four overlapping editions, and that overlap produces the problems every correspondence project meets: documents that are not letters, groups that are also people, the same person under several names, the same letter printed twice, and networks whose shape is set by whose papers were collected.
+1. Open an individual assignment with an access code and read its ten complete letters.
+2. For each letter, choose any relationships it supports between the fixed people. Classify each tie, select an exact passage, and explain the inference. A letter can support multiple ties or no additional tie; every letter also needs a short reading note.
+3. Save all ten letters. The app reveals the graph of **only those 300 letters**, overlaid with the class's submitted relationship annotations.
+4. Switch correspondence and interpreted relationship layers on or off, filter relationship types, inspect the passages behind ties, and compare neighbor counts, strength, and betweenness as the shared graph grows.
+5. Submit a roughly 500-word interpretation of a pattern supported by at least three letters.
 
-## Learning goal
+The [public browser page](https://conradcompagna.github.io/letters-to-networks/explorer/) works as a preview: individual work stays in that browser, and **View annotated sample** displays twelve example interpretations from eleven letters. It does not collect class submissions. Run the classroom server below to share annotations and collect responses in the project's `.classroom_private/submissions/` folder.
 
-Students learn how to build and analyze a correspondence network: read letters, identify writers and addressees, draw directed ties, then use degree, betweenness, communities, and source links to interpret the larger network. The notebook extends this with name reconciliation, duplicate detection, and sensitivity checks.
+## Run the shared class
 
-## Notebook route
-
-| Stage | Task |
-|---|---|
-| 1 | Decide which documents can become correspondence records |
-| 2 | Reconcile names across sources |
-| 3 | Turn records into edges |
-| 4 | Examine one edition's network |
-| 5 | Remove the edition's central figure |
-| 6 | Merge four editions and inspect duplicates |
-| 7 | Interpret communities |
-| 8 | *(optional)* Trace change over time |
-| 9 | *(optional)* Test ranking stability |
-| 10 | Write a source-cited memo |
-
-The notebook is a separate computational route through the dataset. Students answer seven short questions (two more in the optional stages) and write the memo.
-
-## Browser workshop
-
-The browser lab starts with an empty graph and ten complete letters. Students read each letter, identify its writer and addressee, record the evidence for that identification, and add the directed tie. They can check the 1830 edition's printed heading when the body alone does not identify an addressee. The ten letters are matched to records in the full Founders Online metadata corpus.
-
-After all ten letters, students compare their graph with the catalog's author–recipient coding for those same letters, then reveal the four-edition network. They switch between degree, betweenness, and community views, inspect correspondents and linked documents, and write a 500-word response about how those measures change their interpretation of historical roles. The downloaded assignment includes their ten coding decisions and response for submission through a course site. Progress is stored in the browser. The notebook remains the longer computational route through the full dataset.
-
-## Run it
+Requires Python 3.10+ and no extra packages for normal classroom use.
 
 ```bash
-git clone <this repository>
-cd letters-to-networks
-python -m pip install -r requirements.txt
-jupyter lab lab.ipynb
+python classroom_server.py --host 0.0.0.0 --port 8767
 ```
 
-The notebook runs offline on the bundled data in about 1–2 minutes on a laptop. It is saved with all outputs, so it can be read on GitHub without running it.
+The server prints 30 individual access codes. Give each student only their numbered code, then direct them to `http://YOUR-COMPUTER-IP:8767/explorer/` on the same network. The default host is `127.0.0.1` for use on one computer; `--host 0.0.0.0` makes it reachable from classroom devices. Keep the server running during the session. It creates a private roster and per-student JSON submissions on first use. That folder is excluded from Git.
 
-**Explorer.** Open `explorer/index.html` directly in a browser or use the GitHub Pages link above. The ten complete letters, graph builder, comparison, four full-network views, and writing area work offline. Linked source volumes and Founders Online records need internet. Progress is saved locally in the browser; students download a text file to submit through their course site.
+A student's correspondence graph appears after all ten readings are saved. The class graph refreshes every eight seconds as others submit. In a 30-person class, all 300 readings can be saved once; students may revise their own work. The saved response belongs to the same student record. This small server is intended for a trusted classroom network; an internet-facing deployment needs authentication and HTTPS.
 
-## Repository
+## Rebuild the curated corpus
 
-```
-lab.ipynb                    the student notebook (executed)
-netlab.py                    every function the notebook uses, with docstrings
-explorer/index.html          browser explorer; explorer/data.js is generated
-explorer/starter_data.js     ten complete letters and catalog comparison, generated by build_starter.py
-explorer/builder.js          interactive student graph and comparison
-explorer/workshop.js         guided full-network analysis and export
-data/records.csv             the record table
-data/name_authority.csv      name decisions with reasons
-data/starter_letters.json    full public-domain letters from Sparks's 1830 edition
-data/README.md               provenance, transformations, limitations
-instructor/TEACHING_GUIDE.md schedule, preparation, likely difficulties, discussion
-instructor/ANSWER_KEY.md     expected outputs and model answers
-scripts/build_records.py     rebuilds data/records.csv from the Founders Online metadata
-scripts/build_explorer.py    rebuilds explorer/data.js
-scripts/build_starter.py     rebuilds explorer/starter_data.js
+```bash
+python -m pip install requests beautifulsoup4
+python scripts/build_classroom.py
+python scripts/build_samples.py
 ```
 
-## Technologies
+The curation script selects 300 different 1777–1784 printed letters, each matched to one person-to-person Founders Online record by date, printed heading, correspondent names, and signature. It rejects ambiguous matches and balances the ten-letter assignments by word count. The sample script validates that every quoted excerpt occurs in its cited letter. See [data/README.md](data/README.md) for provenance and limitations.
 
-Python (pandas, NetworkX, scikit-learn, matplotlib), Jupyter, and a dependency-free HTML/Canvas explorer.
+## Optional computational notebook
 
-## Data and credit
+The existing [Jupyter notebook](lab.ipynb) remains a separate, longer exercise on the 20,747-record metadata corpus. Its name reconciliation, duplicate, and community calculations do not feed the 300-letter classroom graph. Install [requirements.txt](requirements.txt) and open the notebook with JupyterLab if you want that route.
 
-Metadata from [Founders Online](https://founders.archives.gov), National Archives and University of Virginia Press. The editions are *The Papers of Benjamin Franklin* (American Philosophical Society and Yale University), *The Adams Papers* (Massachusetts Historical Society), *The Papers of Thomas Jefferson* (Princeton University) and *The Selected Papers of John Jay* (Columbia University). See [`data/README.md`](data/README.md).
-
-Lab design and code: Conrad Compagna.
+Metadata: [Founders Online](https://founders.archives.gov), National Archives and University of Virginia Press. Printed letter texts: [Project Gutenberg's Sparks edition](https://www.gutenberg.org/ebooks/search/?query=Diplomatic+Correspondence+American+Revolution+Sparks). Lab design and code: Conrad Compagna.

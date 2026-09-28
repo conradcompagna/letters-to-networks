@@ -2,13 +2,13 @@
 
 Figures below are the outputs of the executed notebook with its default arguments. They are deterministic: rerunning the notebook reproduces them, except Stage 9, which depends on its random seed. Interpretive answers are examples of strong responses, not the only acceptable ones.
 
-## Browser workshop checks
+## Classroom lab checks
 
-The browser bundle contains ten complete letters from Sparks's 1830 edition, each matched to one Founders Online catalog record. The catalog yields ten directed letter edges among seven people, or six distinct undirected pairs. Franklin has five distinct neighbours in this slice; Livingston connects Jay to the Franklin-centered part of the graph. This is a property of the selected letters, not proof that these were the only historical relationships.
+The curated lab uses **300 distinct, complete printed letters**, assigned ten per individual to a 30-person class. Their archival writer/addressee fields yield **43 fixed people and 81 directed correspondence ties**. The 12 provided sample interpretations come from 10 of those letters and are visibly labeled as samples. They are not part of the class aggregate.
 
-The letters include exchanges in both directions between Franklin and Hartley, Franklin and Livingston, Livingston and Jay, and Franklin and Adams. Students should identify writer and addressee from the signature, address, content, and where necessary the separately shown printed heading. Check their evidence notes, especially when a letter says only “Dear Sir” and the addressee has to come from the edition heading or archival catalog. A student who types a variant name may create an extra node; this is a useful opening to discuss name standardization.
+A relationship annotation is acceptable when the source and target are in the fixed person list, the exact quoted passage appears in the assigned letter, and the student's explanation supports the chosen direction and type. A letter may warrant several relationships, or none beyond the correspondence tie. The reading note should explain what the student learned or what remains uncertain.
 
-The comparison uses the catalog's `authors` and `recipients` fields. In the full graph, a strong 500-word response compares two named people under degree and betweenness, inspects their community positions, cites at least two linked documents, and makes a historically modest claim about their roles. It should also recognize that the four editions favor the people whose papers were collected. The app supplies the measures and definitions; it does not grade the interpretation.
+A strong final response identifies a pattern in the shared 300-letter graph, compares its correspondence and interpreted layers, cites at least three letters, and explains how a relationship-type filter or metric changes the conclusion. No specific historical network pattern is prescribed, because the submitted edges depend on students' close readings. Do not treat an annotation count as a count of historical events: several students may describe the same relation, and a single letter may support multiple inferences.
 
 ---
 
