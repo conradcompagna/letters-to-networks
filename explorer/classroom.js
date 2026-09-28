@@ -24,21 +24,14 @@
     const assigned = new Set(assignment()), submitted = new Set(state.submittedDocIds);
     const simulated = samples.filter(item => !assigned.has(item.docId) && !submitted.has(item.docId));
     const actual = state.server && completed() === 10 ? state.classAnnotations : ownAnnotations();
-    return {all:[...actual, ...simulated], actual:actual.length, simulated:simulated.length};
+    return [...actual, ...simulated];
   }
   function updateGraph() {
     if (!state.student) return;
     const reveal = state.skipped || completed() === 10;
     $('graphArea').classList.toggle('hidden', !reveal);
     if (!reveal) return;
-    const counts = graphAnnotations();
-    const people = window.NET_DATA.views.merged.summary.nodes.toLocaleString();
-    const shown = (window.NET_DATA.views.merged.nodes.length + Object.keys(window.CLASS_OVERLAY_POSITIONS).length).toLocaleString();
-    const graphSize = `${shown} shown of ${people} archive correspondents`;
-    $('graphStatus').textContent = state.server && completed() === 10
-      ? `${graphSize} · ${counts.actual} submitted · ${counts.simulated} simulated class relations`
-      : `${graphSize} · ${counts.actual} yours · ${counts.simulated} simulated class relations`;
-    window.classNetwork.update(counts.all, state.student);
+    window.classNetwork.update(graphAnnotations(), state.student);
     window.classNetwork.reveal();
   }
   function updateDeck() {
