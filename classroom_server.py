@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import secrets
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -37,6 +36,26 @@ def roster() -> dict[str, str]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def claim(code: str = "") -> tuple[str, str]:
+    """Reuse a returning reader's code or give the next visitor an unused deck."""
+    keys = roster()
+    path = PRIVATE / "claims.json"
+    claimed = set(json.loads(path.read_text(encoding="utf-8"))) if path.exists() else set()
+    if code:
+        student = student_for(code)
+        if student:
+            if student not in claimed:
+                claimed.add(student)
+                write_json(path, sorted(claimed, key=int))
+            return student, keys[student]
+    student = next((number for number in keys if number not in claimed), None)
+    if student is None:
+        raise ValueError("All 30 assignments are in use. Ask your instructor for a personal link.")
+    claimed.add(student)
+    write_json(path, sorted(claimed, key=int))
+    return student, keys[student]
+
+
 def submission_path(student: str) -> Path:
     return PRIVATE / "submissions" / f"student-{int(student):02}.json"
 
@@ -45,7 +64,12 @@ def submission(student: str) -> dict:
     path = submission_path(student)
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
-    return {"student": student, "letters": {}, "response": ""}
+    return {"student": student, "letters": {}}
+
+
+def reviewed(reading: dict) -> bool:
+    return bool(reading.get("annotations")) or (reading.get("noTie") is True
+                                                and len(str(reading.get("noTieReason", "")).strip()) >= 40)
 
 
 def student_for(code: str) -> str | None:
@@ -104,7 +128,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             with LOCK:
                 own = submission(student)
-                completed = len(own["letters"])
+                completed = sum(reviewed(reading) for reading in own["letters"].values())
                 if parsed.path == "/api/state":
                     if completed < 10:
                         self.send_json({"student": student, "own": own, "completed": completed,
@@ -116,7 +140,10 @@ class Handler(SimpleHTTPRequestHandler):
                                    for item in reading["annotations"]]
                     self.send_json({"student": student, "own": own, "completed": completed,
                                     "required": 10, "revealed": True,
-                                    "classCompleted": sum(len(entry["letters"]) for entry in all_submissions),
+                                    "classCompleted": sum(reviewed(reading) for entry in all_submissions
+                                                          for reading in entry["letters"].values()),
+                                    "submittedDocIds": [doc_id for entry in all_submissions
+                                                        for doc_id in entry["letters"]],
                                     "annotations": annotations})
                     return
             self.send_json({"error": "Unknown API route."}, 404)
@@ -134,7 +161,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         parsed = urlparse(self.path)
-        if parsed.path not in ("/api/letter", "/api/response"):
+        if parsed.path not in ("/api/claim", "/api/letter"):
             self.send_json({"error": "Unknown API route."}, 404)
             return
         length = int(self.headers.get("Content-Length", "0"))
@@ -143,6 +170,11 @@ class Handler(SimpleHTTPRequestHandler):
             return
         try:
             body = json.loads(self.rfile.read(length))
+            if parsed.path == "/api/claim":
+                with LOCK:
+                    student, code = claim(str(body.get("code", "")))
+                self.send_json({"student": student, "code": code})
+                return
             student = student_for(str(body.get("code", "")))
             if not student:
                 self.send_json({"error": "Enter a valid student code."}, 403)
@@ -153,21 +185,18 @@ class Handler(SimpleHTTPRequestHandler):
                     doc_id = body.get("docId")
                     if doc_id not in DATA["assignments"][student]:
                         raise ValueError("This letter is not in your assignment.")
-                    note = str(body.get("readingNote", "")).strip()
-                    if not 40 <= len(note) <= 1000:
-                        raise ValueError("Add a 40–1000 character reading note for this letter.")
-                    own["letters"][doc_id] = {"readingNote": note,
-                                               "annotations": validate_annotations(doc_id, body.get("annotations"))}
-                else:
-                    if len(own["letters"]) < 10:
-                        raise ValueError("Finish your ten letters before submitting the response.")
-                    response = str(body.get("response", "")).strip()
-                    words = len(re.findall(r"\b[\w’'-]+\b", response))
-                    if words < 450 or words > 600:
-                        raise ValueError("Write approximately 500 words (450–600).")
-                    own["response"] = response
+                    annotations = validate_annotations(doc_id, body.get("annotations"))
+                    no_tie = body.get("noTie") is True
+                    if not annotations and not no_tie:
+                        raise ValueError("Add a supported relationship or mark that none is supported.")
+                    reason = str(body.get("noTieReason", "")).strip() if no_tie else ""
+                    if no_tie and not 40 <= len(reason) <= 500:
+                        raise ValueError("Explain in 40–500 characters why this letter supports no additional relationship.")
+                    own["letters"][doc_id] = {"annotations": annotations, "noTie": no_tie,
+                                              "noTieReason": reason}
                 write_json(submission_path(student), own)
-            self.send_json({"ok": True, "completed": len(own["letters"])})
+            self.send_json({"ok": True, "completed": sum(reviewed(reading)
+                                                           for reading in own["letters"].values())})
         except (ValueError, TypeError, json.JSONDecodeError) as error:
             self.send_json({"error": str(error)}, 400)
 

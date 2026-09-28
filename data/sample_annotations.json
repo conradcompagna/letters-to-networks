@@ -6,7 +6,7 @@
     "type": "reports",
     "evidence": "Your communications of the sentiments of Congress",
     "note": "Franklin acknowledges Livingston's transmission of Congress's peace terms.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-36-02-0505",
@@ -15,7 +15,7 @@
     "type": "reports",
     "evidence": "Mr Digges, who will deliver this to you, informs me",
     "note": "Hartley relays news about an attempted contact with Adams.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0043",
@@ -24,7 +24,7 @@
     "type": "reports",
     "evidence": "I send you a letter of Mr Adams's, just received",
     "note": "Franklin forwards an Adams letter to Livingston.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Jay/01-03-02-0008",
@@ -33,7 +33,7 @@
     "type": "consults",
     "evidence": "I have had the satisfaction of conferring with the Marquis de Lafayette, on several interesting subjects",
     "note": "Jay reports a direct consultation with Lafayette; the subjects are not specified here.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0048",
@@ -42,7 +42,7 @@
     "type": "negotiates",
     "evidence": "what has passed between us is to be considered merely as private conversation",
     "note": "Franklin distinguishes exploratory peace talks with Hartley from an authorized negotiation.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0068",
@@ -51,7 +51,7 @@
     "type": "delegates",
     "evidence": "has made me send to you Mr Oswald",
     "note": "Shelburne sends Oswald as an intermediary to Franklin.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0182",
@@ -60,7 +60,7 @@
     "type": "reports",
     "evidence": "Mr Oswald is just returned from London, and is now with me",
     "note": "Franklin updates Vergennes on Oswald's arrival.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0182",
@@ -69,7 +69,7 @@
     "type": "reports",
     "evidence": "He has delivered me a letter from Lord Shelburne",
     "note": "Franklin says Oswald conveyed Shelburne's letter to him.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0205",
@@ -78,7 +78,7 @@
     "type": "introduces",
     "evidence": "I introduced him as soon as possible to Count de Vergennes",
     "note": "Franklin introduces the British envoy Grenville to Vergennes.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0074",
@@ -87,7 +87,7 @@
     "type": "supports",
     "evidence": "Richard Oswald, Esquire, who will do me the honor of delivering this, is a gentleman of the strictest candor and integrity",
     "note": "Laurens endorses Oswald as a trustworthy intermediary to Franklin.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0329",
@@ -96,7 +96,7 @@
     "type": "requests",
     "evidence": "I could wish to know from you what allowance you make to your private Secretary",
     "note": "Livingston asks Franklin for an accounting of his office's expenses.",
-    "student": "sample"
+    "student": "simulated"
   },
   {
     "docId": "Adams/06-13-02-0001",
@@ -105,6 +105,6 @@
     "type": "supports",
     "evidence": "you have my consent to transmit this opinion to Congress",
     "note": "Adams supports Dumas's appointment to a formal legation role.",
-    "student": "sample"
+    "student": "simulated"
   }
 ]

@@ -2,19 +2,17 @@
 
 A digital humanities methods lab in which a class builds an evidence-backed relationship network from historical letters.
 
-[Open the public sample and individual assignment preview](https://conradcompagna.github.io/letters-to-networks/explorer/)
+[Open the lab](https://conradcompagna.github.io/letters-to-networks/explorer/)
 
 ## Classroom activity
 
 Thirty students each receive **ten different complete letters**: 300 letters in all. The letters are transcribed from Jared Sparks's public-domain *Diplomatic Correspondence of the American Revolution* and matched to the author and recipient fields of the corresponding Founders Online catalog records. The resulting classroom corpus has 43 fixed person nodes and 81 directed correspondence ties. No student has to identify all 43 people or read all 300 letters.
 
-1. Open an individual assignment with an access code and read its ten complete letters.
-2. For each letter, choose any relationships it supports between the fixed people. Classify each tie, select an exact passage, and explain the inference. A letter can support multiple ties or no additional tie; every letter also needs a short reading note.
-3. Save all ten letters. The app reveals the graph of **only those 300 letters**, overlaid with the class's submitted relationship annotations.
-4. Switch correspondence and interpreted relationship layers on or off, filter relationship types, inspect the passages behind ties, and compare neighbor counts, strength, and betweenness as the shared graph grows.
-5. Submit a roughly 500-word interpretation of a pattern supported by at least three letters.
+1. Open the lab and read the ten complete letters assigned to you.
+2. For each letter, annotate every relationship you can defend between the fixed people: choose its direction and type, quote the supporting words, and explain your inference. If you find no supported relationship, explain why.
+3. After all ten letters are annotated, the 300-letter graph appears with your own annotations and the available class annotations. Explore its people, ties, and measures. A **Skip exercise · reveal graph** button opens the graph immediately with simulated class annotations.
 
-The [public browser page](https://conradcompagna.github.io/letters-to-networks/explorer/) works as a preview: individual work stays in that browser, and **View annotated sample** displays twelve example interpretations from eleven letters. It does not collect class submissions. Run the classroom server below to share annotations and collect responses in the project's `.classroom_private/submissions/` folder.
+The [public browser page](https://conradcompagna.github.io/letters-to-networks/explorer/) stores one student's annotations in that browser; it cannot collect a class. The revealed graph includes twelve simulated example annotations, excluding the ten letters assigned to that visitor. Run the classroom server below to collect real class annotations in `.classroom_private/submissions/`.
 
 ## Run the shared class
 
@@ -24,9 +22,9 @@ Requires Python 3.10+ and no extra packages for normal classroom use.
 python classroom_server.py --host 0.0.0.0 --port 8767
 ```
 
-The server prints 30 individual access codes. Give each student only their numbered code, then direct them to `http://YOUR-COMPUTER-IP:8767/explorer/` on the same network. The default host is `127.0.0.1` for use on one computer; `--host 0.0.0.0` makes it reachable from classroom devices. Keep the server running during the session. It creates a private roster and per-student JSON submissions on first use. That folder is excluded from Git.
+Direct students to `http://YOUR-COMPUTER-IP:8767/explorer/` on the same network. Each visitor receives the next unclaimed ten-letter assignment automatically; the browser remembers its access code for return visits. The server also prints the 30 codes, which can be used in a link ending `#code=CODE` if a student changes devices. The default host is `127.0.0.1` for use on one computer; `--host 0.0.0.0` makes it reachable from classroom devices. Keep the server running during the session. It creates a private roster and per-student JSON submissions on first use. That folder is excluded from Git.
 
-A student's correspondence graph appears after all ten readings are saved. The class graph refreshes every eight seconds as others submit. In a 30-person class, all 300 readings can be saved once; students may revise their own work. The saved response belongs to the same student record. This small server is intended for a trusted classroom network; an internet-facing deployment needs authentication and HTTPS.
+A student's graph appears after all ten letters are reviewed, or when they skip the exercise. Once their ten are complete, it refreshes every eight seconds as others submit. Real submissions replace simulated examples for those documents. Simulated annotations never appear on a student's assigned ten letters. This small server is intended for a trusted classroom network; an internet-facing deployment needs authentication and HTTPS.
 
 ## Rebuild the curated corpus
 

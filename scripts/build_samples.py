@@ -55,7 +55,7 @@ for doc_id, source, target, kind, quote, note in SAMPLES:
     full = " ".join(letter["paragraphs"])
     assert quote in full, (doc_id, quote)
     out.append({"docId": doc_id, "source": person(source), "target": person(target),
-                "type": kind, "evidence": quote, "note": note, "student": "sample"})
+                "type": kind, "evidence": quote, "note": note, "student": "simulated"})
 (ROOT / "data" / "sample_annotations.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 (ROOT / "explorer" / "sample_data.js").write_text("window.SAMPLE_ANNOTATIONS = " + json.dumps(out, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
 print(f"Validated {len(out)} sample annotations from {len({x['docId'] for x in out})} letters.")

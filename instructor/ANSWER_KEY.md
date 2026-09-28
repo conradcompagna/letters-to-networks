@@ -4,11 +4,11 @@ Figures below are the outputs of the executed notebook with its default argument
 
 ## Classroom lab checks
 
-The curated lab uses **300 distinct, complete printed letters**, assigned ten per individual to a 30-person class. Their archival writer/addressee fields yield **43 fixed people and 81 directed correspondence ties**. The 12 provided sample interpretations come from 10 of those letters and are visibly labeled as samples. They are not part of the class aggregate.
+The curated lab uses **300 distinct, complete printed letters**, assigned ten per individual to a 30-person class. Their archival writer/addressee fields yield **43 fixed people and 81 directed correspondence ties**. The 12 simulated interpretations come from 11 letters. None appear on the current student's ten letters, and they are labeled as simulated in the graph.
 
-A relationship annotation is acceptable when the source and target are in the fixed person list, the exact quoted passage appears in the assigned letter, and the student's explanation supports the chosen direction and type. A letter may warrant several relationships, or none beyond the correspondence tie. The reading note should explain what the student learned or what remains uncertain.
+A relationship annotation is acceptable when the source and target are in the fixed person list, the exact quoted passage appears in the assigned letter, and the student's explanation supports the chosen direction and type. A letter may warrant several relationships, or none beyond the correspondence tie.
 
-A strong final response identifies a pattern in the shared 300-letter graph, compares its correspondence and interpreted layers, cites at least three letters, and explains how a relationship-type filter or metric changes the conclusion. No specific historical network pattern is prescribed, because the submitted edges depend on students' close readings. Do not treat an annotation count as a count of historical events: several students may describe the same relation, and a single letter may support multiple inferences.
+No specific historical network pattern is prescribed, because the submitted edges depend on students' close readings. Do not treat an annotation count as a count of historical events: several students may describe the same relation, and a single letter may support multiple inferences.
 
 ---
 

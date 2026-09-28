@@ -6,32 +6,31 @@ Students learn to **build and analyze a network from close reading**. The archiv
 
 ## Preparation for 30 students
 
-Run `python classroom_server.py --host 0.0.0.0 --port 8767` on a computer reachable by the class. The terminal prints 30 numbered access codes. Distribute one code to each individual and share the classroom URL. Check that every student can open it before the lab begins. Assignments are fixed: each code owns ten distinct complete letters, approximately 3,500 words in total. There is no need to split the letters manually.
+Run `python classroom_server.py --host 0.0.0.0 --port 8767` on a computer reachable by the class and share the classroom URL. Each visitor automatically receives an unused assignment, and their browser remembers it. The terminal prints recovery codes if a student changes devices; a link ending `#code=CODE` restores that assignment. Assignments are fixed: each code owns ten distinct complete letters, approximately 3,500 words in total.
 
-The `.classroom_private` folder contains codes, reading notes, annotations, and final responses. Keep it on the instructor's machine; do not commit it. The server has no course-management login. Use it on a trusted class network or add authentication and HTTPS before public hosting.
+The `.classroom_private` folder contains codes and annotations. Keep it on the instructor's machine; do not commit it. The server has no course-management login. Use it on a trusted class network or add authentication and HTTPS before public hosting.
 
-The public GitHub Pages page demonstrates the interface and includes twelve **instructor sample** annotations from eleven letters. Its individual preview saves in the browser and cannot aggregate a class.
+The public GitHub Pages page demonstrates the interface and includes twelve **simulated class** annotations from eleven letters. It saves one visitor's work in their browser and cannot aggregate a class. The simulated annotations are excluded from that visitor's ten letters.
 
 ## Suggested session
 
 | Time | Student work |
 |---|---|
 | 0–10 min | Read one full letter together. Distinguish the catalog's correspondence tie from a relationship inferred from its words. Discuss direction, type, and a quote that would justify it. |
-| 10–55 min | Each student reads ten assigned letters and records any supported ties among the fixed people. Each tie has a type, exact excerpt, and explanation. They write a brief reading note even when they find no additional tie. |
-| 55–70 min | After saving all ten, students reveal the 300-letter baseline with accumulating class annotations. They inspect a tie's passages and compare the two layers. |
-| 70–90 min | Filter a relationship type and discuss who gains or loses neighbors or strength, why repeated assertions increase strength, and which apparent bridge depends on a small number of letters. Begin the 500-word analysis, completed after class. |
+| 10–55 min | Each student reads ten assigned letters and records any supported ties among the fixed people. Each tie has a type, exact excerpt, and explanation. For a letter without an additional supported tie, they explain why. |
+| 55–70 min | After reviewing all ten, students see the 300-letter graph with their own and available class annotations. They inspect a tie's passages and compare the two layers. |
+| 70–90 min | Filter a relationship type and discuss who gains or loses neighbors or strength, why repeated assertions increase strength, and which apparent bridge depends on a small number of letters. |
 
-At a realistic reading pace, some students may need the last letters or the written response as homework. The server keeps each saved letter and response in the project folder.
+At a realistic reading pace, some students may need to finish the last letters as homework. The server keeps each saved letter in the project folder. The skip button lets instructors demonstrate the graph without completing an assignment.
 
 ## What to assess
 
 - Are the source and target people genuinely identifiable in the cited passage? A name merely mentioned does not automatically imply a relationship.
 - Is the direction and category defensible? “Reports to,” “requests from,” and “delegates to” describe different actions, even when two people appear in the same text.
-- Does the student mark uncertainty or ambiguity in the reading note instead of inventing a tie?
-- In the final response, is a claimed pattern supported by at least three actual letters and a comparison of archival correspondence with interpreted relationships?
+- Does the student refrain from inventing a tie where the letter does not support one?
 - Does the student distinguish **strength** (counts of visible letters and annotations) from **neighbors** (distinct people), and explain the effect of filtering on betweenness?
 
-There is no predetermined “correct” relationship network. Two students could reasonably classify the same passage differently. The sample annotations are examples of documented inferences, not an answer key; they are never inserted into student submissions.
+There is no predetermined “correct” relationship network. Two students could reasonably classify the same passage differently. The simulated annotations are examples of documented inferences, not an answer key; they are never inserted into student submissions or shown on the current student's ten letters.
 
 ## Method notes
 
