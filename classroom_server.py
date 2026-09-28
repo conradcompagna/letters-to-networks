@@ -17,8 +17,6 @@ ROOT = Path(__file__).resolve().parent
 PRIVATE = ROOT / ".classroom_private"
 DATA = json.loads((ROOT / "data" / "classroom_letters.json").read_text(encoding="utf-8"))
 LETTERS = {letter["docId"]: letter for letter in DATA["letters"]}
-NODES = {letter[key] for letter in DATA["letters"] for key in ("writer", "addressee")}
-TYPES = {"reports", "requests", "supports", "opposes", "delegates", "introduces", "consults", "negotiates", "other"}
 LOCK = threading.RLock()
 
 
@@ -68,8 +66,7 @@ def submission(student: str) -> dict:
 
 
 def reviewed(reading: dict) -> bool:
-    return bool(reading.get("annotations")) or (reading.get("noTie") is True
-                                                and len(str(reading.get("noTieReason", "")).strip()) >= 40)
+    return bool(reading.get("annotations"))
 
 
 def student_for(code: str) -> str | None:
@@ -77,31 +74,26 @@ def student_for(code: str) -> str | None:
 
 
 def validate_annotations(doc_id: str, annotations: object) -> list[dict]:
-    if not isinstance(annotations, list) or len(annotations) > 15:
-        raise ValueError("Provide at most 15 relationships for one letter.")
+    if not isinstance(annotations, list):
+        raise ValueError("Provide the relations for this letter.")
     letter = LETTERS[doc_id]
-    full_text = " ".join(letter["paragraphs"])
-    normalized_text = " ".join(full_text.casefold().split())
     clean = []
     seen = set()
     for item in annotations:
         if not isinstance(item, dict):
             raise ValueError("Invalid relationship.")
-        source, target = item.get("source"), item.get("target")
-        kind = item.get("type")
-        evidence = str(item.get("evidence", "")).strip()
-        note = str(item.get("note", "")).strip()
-        if source not in NODES or target not in NODES or source == target or kind not in TYPES:
-            raise ValueError("Choose two distinct listed people and a relationship type.")
-        if not 20 <= len(evidence) <= 600 or " ".join(evidence.casefold().split()) not in normalized_text:
-            raise ValueError("Evidence must be an exact 20–600 character excerpt from this letter.")
-        if not 12 <= len(note) <= 500:
-            raise ValueError("Explain the relationship in 12–500 characters.")
-        key = (source, target, kind, " ".join(evidence.casefold().split()))
+        kind = " ".join(str(item.get("type", "")).split())
+        note = " ".join(str(item.get("note", "")).split())
+        if not 2 <= len(kind) <= 60:
+            raise ValueError("Write a relation tag of 2–60 characters.")
+        if not 12 <= len(note) <= 300:
+            raise ValueError("Explain the relation in one sentence (12–300 characters).")
+        key = (kind.casefold(), note.casefold())
         if key in seen:
-            raise ValueError("That relationship and passage are already recorded for this letter.")
+            raise ValueError("That relation is already recorded for this letter.")
         seen.add(key)
-        clean.append({"source": source, "target": target, "type": kind, "evidence": evidence, "note": note})
+        clean.append({"source": letter["writer"], "target": letter["addressee"],
+                      "type": kind, "note": note})
     return clean
 
 
@@ -165,7 +157,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_json({"error": "Unknown API route."}, 404)
             return
         length = int(self.headers.get("Content-Length", "0"))
-        if length <= 0 or length > 20000:
+        if length <= 0 or length > 100000:
             self.send_json({"error": "Invalid submission size."}, 400)
             return
         try:
@@ -186,14 +178,9 @@ class Handler(SimpleHTTPRequestHandler):
                     if doc_id not in DATA["assignments"][student]:
                         raise ValueError("This letter is not in your assignment.")
                     annotations = validate_annotations(doc_id, body.get("annotations"))
-                    no_tie = body.get("noTie") is True
-                    if not annotations and not no_tie:
-                        raise ValueError("Add a supported relationship or mark that none is supported.")
-                    reason = str(body.get("noTieReason", "")).strip() if no_tie else ""
-                    if no_tie and not 40 <= len(reason) <= 500:
-                        raise ValueError("Explain in 40–500 characters why this letter supports no additional relationship.")
-                    own["letters"][doc_id] = {"annotations": annotations, "noTie": no_tie,
-                                              "noTieReason": reason}
+                    if not annotations:
+                        raise ValueError("Add at least one relation for this letter.")
+                    own["letters"][doc_id] = {"annotations": annotations}
                 write_json(submission_path(student), own)
             self.send_json({"ok": True, "completed": sum(reviewed(reading)
                                                            for reading in own["letters"].values())})

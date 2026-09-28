@@ -1,110 +1,370 @@
 [
   {
+    "docId": "Franklin/01-26-02-0294",
+    "source": "Vergennes, Charles Gravier, comte de",
+    "target": "Franklin, Benjamin",
+    "type": "conveys royal approval",
+    "note": "Vergennes tells Franklin that the king welcomed the information in Franklin's previous letter.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-29-02-0552",
+    "source": "Lovell, James",
+    "target": "Franklin, Benjamin",
+    "type": "forwards congressional papers",
+    "note": "Lovell tells Franklin that he is forwarding gazettes, journals, and pamphlets by way of Martinique.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-31-02-0157",
+    "source": "Jones, John Paul",
+    "target": "Franklin, Benjamin",
+    "type": "acknowledges orders",
+    "note": "Jones tells Franklin that he received instructions about prisoners held aboard the Alliance.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-30-02-0204",
+    "source": "Franklin, Benjamin",
+    "target": "Lafayette, Marie-Joseph-Paul-Yves-Roch-Gilbert du Motier, marquis de",
+    "type": "presents a ceremonial gift",
+    "note": "Franklin tells Lafayette that Congress has prepared a sword to acknowledge his service.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Jay/01-02-02-0006",
+    "source": "Jay, John",
+    "target": "Lee, Arthur",
+    "type": "requests diplomatic intelligence",
+    "note": "Jay asks Arthur Lee for information about his efforts to negotiate a treaty with Spain.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-08-02-0023",
+    "source": "Lafayette, Marie-Joseph-Paul-Yves-Roch-Gilbert du Motier, marquis de",
+    "target": "Adams, John",
+    "type": "requests help for an officer",
+    "note": "Lafayette asks Adams to help an officer travel to America aboard the Alliance.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-09-02-0182-0001",
+    "source": "Vergennes, Charles Gravier, comte de",
+    "target": "Adams, John",
+    "type": "advises further inquiry",
+    "note": "Vergennes thanks Adams for his communications and urges him to verify a claim in a shared letter.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-33-02-0107",
+    "source": "Vergennes, Charles Gravier, comte de",
+    "target": "Franklin, Benjamin",
+    "type": "shares private correspondence",
+    "note": "Vergennes tells Franklin that he is sending correspondence he had with Adams for Franklin's judgment.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-30-02-0051",
+    "source": "Lovell, James",
+    "target": "Franklin, Benjamin",
+    "type": "sends public records",
+    "note": "Lovell sends Franklin journals, gazettes, and letters and explains their delivery routes.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-24-02-0032",
+    "source": "Franklin, Benjamin",
+    "target": "Dumas, Charles-Guillaume-Frédéric",
+    "type": "shares American news",
+    "note": "Franklin sends Dumas the substance of new reports that arrived from North America.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-06-02-0252",
+    "source": "Adams, John",
+    "target": "Adams, Samuel",
+    "type": "warns about a British offer",
+    "note": "Adams warns Samuel Adams that Britain may offer independence if America breaks its alliance with France.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-07-02-0277-0001",
+    "source": "Vergennes, Charles Gravier, comte de",
+    "target": "Adams, John",
+    "type": "assures continued esteem",
+    "note": "Vergennes tells Adams that his loss of an official role in France has not diminished his standing.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-08-02-0083",
+    "source": "Adams, John",
+    "target": "Lovell, James",
+    "type": "reports a political dispute",
+    "note": "Adams tells Lovell that questions about Vergennes and Arthur Lee are being debated in America.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-31-02-0286",
+    "source": "Franklin, Benjamin",
+    "target": "Dumas, Charles-Guillaume-Frédéric",
+    "type": "requests maritime intelligence",
+    "note": "Franklin asks Dumas for news about how the seizure of Dutch ships has been resolved.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-32-02-0082",
+    "source": "Franklin, Benjamin",
+    "target": "Reed, Joseph",
+    "type": "thanks for evidence",
+    "note": "Franklin thanks Reed for a pamphlet that he says clarifies disputed facts.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-09-02-0162",
+    "source": "Gerry, Elbridge",
+    "target": "Adams, John",
+    "type": "reports financial policy",
+    "note": "Gerry reports to Adams that Congress's plan to withdraw paper money has been well received.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-33-02-0132",
+    "source": "Franklin, Benjamin",
+    "target": "Lovell, James",
+    "type": "explains communication delays",
+    "note": "Franklin tells Lovell when he received several of Lovell's earlier letters to illustrate delays in correspondence.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-34-02-0129",
+    "source": "Lovell, James",
+    "target": "Franklin, Benjamin",
+    "type": "introduces a consul",
+    "note": "Lovell introduces the newly appointed consul William Palfrey to Franklin and asks for his patronage.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-35-02-0042",
+    "source": "Franklin, Benjamin",
+    "target": "Lafayette, Marie-Joseph-Paul-Yves-Roch-Gilbert du Motier, marquis de",
+    "type": "thanks for frequent letters",
+    "note": "Franklin thanks Lafayette for writing often and explains that his own duties slow his replies.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Jay/01-02-02-0210",
+    "source": "Morris, Robert",
+    "target": "Jay, John",
+    "type": "proposes aid for seamen",
+    "note": "Morris proposes to Jay a way to support American seamen arriving from captivity at Cadiz.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Jay/01-02-02-0280",
+    "source": "Livingston, Robert R.",
+    "target": "Jay, John",
+    "type": "corrects a cipher mistake",
+    "note": "Livingston explains to Jay that his previous letter used a cipher Jay had never received.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-36-02-0336",
+    "source": "Livingston, Robert R.",
+    "target": "Franklin, Benjamin",
+    "type": "forwards consular powers",
+    "note": "Livingston sends Franklin a convention and explains that Franklin may sign it in France.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-36-02-0451",
+    "source": "Hartley, David",
+    "target": "Franklin, Benjamin",
+    "type": "reports peace advocacy",
+    "note": "Hartley tells Franklin that he has repeatedly urged a route toward peace and awaits a response.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-37-02-0016",
+    "source": "Franklin, Benjamin",
+    "target": "Shelburne, William Petty, Earl of",
+    "type": "opens a political channel",
+    "note": "Franklin writes Shelburne after learning of a more favorable British disposition toward America.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-37-02-0127",
+    "source": "Franklin, Benjamin",
+    "target": "Laurens, Henry",
+    "type": "relays an intermediary's authority",
+    "note": "Franklin tells Laurens that Oswald brought a letter from Shelburne authorizing confidence in him.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-13-02-0032",
+    "source": "Livingston, Robert R.",
+    "target": "Adams, John",
+    "type": "reports American resolve",
+    "note": "Livingston tells Adams that a change in the British ministry has not changed American opinion.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-37-02-0386",
+    "source": "Lafayette, Marie-Joseph-Paul-Yves-Roch-Gilbert du Motier, marquis de",
+    "target": "Franklin, Benjamin",
+    "type": "shares diplomatic intelligence",
+    "note": "Lafayette tells Franklin that Grenville's express has arrived and promises to pass on further news.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-38-02-0057",
+    "source": "Oswald, Richard",
+    "target": "Franklin, Benjamin",
+    "type": "supplies treaty authority",
+    "note": "Oswald sends Franklin an extract from his instructions concerning the proposed American treaty.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-14-02-0063",
+    "source": "Adams, John",
+    "target": "Livingston, Robert R.",
+    "type": "transmits a treaty",
+    "note": "Adams sends Livingston the preliminary treaty between Britain and the United States.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-14-02-0103",
+    "source": "Adams, John",
+    "target": "Dumas, Charles-Guillaume-Frédéric",
+    "type": "forwards enclosed letters",
+    "note": "Adams tells Dumas that he will forward the letters Dumas enclosed with his recent correspondence.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-39-02-0026",
+    "source": "Jay, John",
+    "target": "Franklin, Benjamin",
+    "type": "rebuts an appointment rumor",
+    "note": "Jay tells Franklin that he did not back the appointment of Franklin's grandson at Franklin's request.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-39-02-0219",
+    "source": "Franklin, Benjamin",
+    "target": "Hartley, David",
+    "type": "provides a recommendation",
+    "note": "Franklin tells Hartley that he wrote the requested recommendation for Joshua Grigby.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Franklin/01-39-02-0372",
+    "source": "Franklin, Benjamin",
+    "target": "Hartley, David",
+    "type": "shares reform proposals",
+    "note": "Franklin sends Hartley copies of papers they discussed about improving the law of nations.",
+    "student": "simulated"
+  },
+  {
+    "docId": "Adams/06-15-02-0059",
+    "source": "Adams, John",
+    "target": "Livingston, Robert R.",
+    "type": "reports negotiation papers",
+    "note": "Adams sends Livingston copies of papers exchanged with Hartley and explains why he did not answer them in writing.",
+    "student": "simulated"
+  },
+  {
     "docId": "Franklin/01-36-02-0493",
     "source": "Franklin, Benjamin",
     "target": "Livingston, Robert R.",
-    "type": "reports",
-    "evidence": "Your communications of the sentiments of Congress",
-    "note": "Franklin acknowledges Livingston's transmission of Congress's peace terms.",
+    "type": "acknowledges peace instructions",
+    "note": "Franklin acknowledges Livingston's message conveying Congress's position on peace terms.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-36-02-0505",
     "source": "Hartley, David",
     "target": "Franklin, Benjamin",
-    "type": "reports",
-    "evidence": "Mr Digges, who will deliver this to you, informs me",
-    "note": "Hartley relays news about an attempted contact with Adams.",
+    "type": "passes diplomatic news",
+    "note": "Hartley tells Franklin that Digges has informed him about a possible contact with Adams.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0043",
     "source": "Franklin, Benjamin",
     "target": "Livingston, Robert R.",
-    "type": "reports",
-    "evidence": "I send you a letter of Mr Adams's, just received",
-    "note": "Franklin forwards an Adams letter to Livingston.",
+    "type": "forwards a colleague's letter",
+    "note": "Franklin tells Livingston that he is sending on a letter he has just received from Adams.",
     "student": "simulated"
   },
   {
     "docId": "Jay/01-03-02-0008",
     "source": "Jay, John",
-    "target": "Lafayette, Marie-Joseph-Paul-Yves-Roch-Gilbert du Motier, marquis de",
-    "type": "consults",
-    "evidence": "I have had the satisfaction of conferring with the Marquis de Lafayette, on several interesting subjects",
-    "note": "Jay reports a direct consultation with Lafayette; the subjects are not specified here.",
+    "target": "Livingston, Robert R.",
+    "type": "reports a consultation",
+    "note": "Jay reports to Livingston that he and Franklin have advised Lafayette to remain in Paris.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0048",
     "source": "Franklin, Benjamin",
     "target": "Hartley, David",
-    "type": "negotiates",
-    "evidence": "what has passed between us is to be considered merely as private conversation",
-    "note": "Franklin distinguishes exploratory peace talks with Hartley from an authorized negotiation.",
+    "type": "tests peace negotiations",
+    "note": "Franklin tells Hartley that their discussion must remain private while peace terms are explored.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0068",
     "source": "Shelburne, William Petty, Earl of",
-    "target": "Oswald, Richard",
-    "type": "delegates",
-    "evidence": "has made me send to you Mr Oswald",
-    "note": "Shelburne sends Oswald as an intermediary to Franklin.",
+    "target": "Franklin, Benjamin",
+    "type": "sends an intermediary",
+    "note": "Shelburne tells Franklin that he has sent Oswald as a trusted channel for discussion.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0182",
     "source": "Franklin, Benjamin",
     "target": "Vergennes, Charles Gravier, comte de",
-    "type": "reports",
-    "evidence": "Mr Oswald is just returned from London, and is now with me",
-    "note": "Franklin updates Vergennes on Oswald's arrival.",
+    "type": "reports an envoy's return",
+    "note": "Franklin tells Vergennes that Oswald has returned from London and is with him.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0182",
-    "source": "Oswald, Richard",
-    "target": "Franklin, Benjamin",
-    "type": "reports",
-    "evidence": "He has delivered me a letter from Lord Shelburne",
-    "note": "Franklin says Oswald conveyed Shelburne's letter to him.",
+    "source": "Franklin, Benjamin",
+    "target": "Vergennes, Charles Gravier, comte de",
+    "type": "shares British proposals",
+    "note": "Franklin sends Vergennes Shelburne's letter and reports a British decision to discuss peace in Paris.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0205",
     "source": "Franklin, Benjamin",
-    "target": "Vergennes, Charles Gravier, comte de",
-    "type": "introduces",
-    "evidence": "I introduced him as soon as possible to Count de Vergennes",
-    "note": "Franklin introduces the British envoy Grenville to Vergennes.",
+    "target": "Fox, Charles James",
+    "type": "welcomes a peace envoy",
+    "note": "Franklin tells Fox that he has introduced Grenville to Vergennes and hopes the visit advances peace.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0074",
     "source": "Laurens, Henry",
-    "target": "Oswald, Richard",
-    "type": "supports",
-    "evidence": "Richard Oswald, Esquire, who will do me the honor of delivering this, is a gentleman of the strictest candor and integrity",
-    "note": "Laurens endorses Oswald as a trustworthy intermediary to Franklin.",
+    "target": "Franklin, Benjamin",
+    "type": "vouches for an intermediary",
+    "note": "Laurens assures Franklin that Oswald is candid and safe to speak with about peace.",
     "student": "simulated"
   },
   {
     "docId": "Franklin/01-37-02-0329",
     "source": "Livingston, Robert R.",
     "target": "Franklin, Benjamin",
-    "type": "requests",
-    "evidence": "I could wish to know from you what allowance you make to your private Secretary",
-    "note": "Livingston asks Franklin for an accounting of his office's expenses.",
+    "type": "requests an expense account",
+    "note": "Livingston asks Franklin what allowance he makes for his private secretary.",
     "student": "simulated"
   },
   {
     "docId": "Adams/06-13-02-0001",
     "source": "Adams, John",
     "target": "Dumas, Charles-Guillaume-Frédéric",
-    "type": "supports",
-    "evidence": "you have my consent to transmit this opinion to Congress",
-    "note": "Adams supports Dumas's appointment to a formal legation role.",
+    "type": "approves a recommendation",
+    "note": "Adams gives Dumas permission to transmit his opinion about a diplomatic appointment to Congress.",
     "student": "simulated"
   }
 ]

@@ -16,13 +16,13 @@ The modern transcriptions and annotations on Founders Online belong to the edito
 | `records.csv` | 20,747 | Every document in the Franklin, Adams, Jefferson and Jay Papers dated 1 January 1777 – 31 December 1784. Columns: `doc_id`, `edition`, `date` (the `date-from` field), `title`, `authors`, `recipients` (lists joined with ` \| `), `permalink`. |
 | `name_authority.csv` | 34 | Decisions about name variants, made for this lab: `merge` (19), `probable` (4), `keep separate` (11), each with the reason. `variant` is replaced by `canonical` when a decision is applied. |
 | `classroom_letters.json` | 300 | Complete printed letters matched to individual Founders Online catalog records; 30 nonoverlapping ten-letter assignments. The generated browser data is `explorer/classroom_data.js`. |
-| `sample_annotations.json` | 12 | Hand-authored, quote-checked example relationship interpretations from eleven selected letters; the browser copy is `explorer/sample_data.js`. |
+| `sample_annotations.json` | 12 | Hand-authored simulated class relation tags for eleven selected letters; the browser copy is `explorer/sample_data.js`. |
 | `starter_letters.json` | 10 | Earlier pilot deck retained for reference; it is no longer used by the classroom browser. |
 | `raw/founders-00README.html` | – | The metadata directory's description page, as downloaded. |
 
 Records per edition: Franklin 9,841 · Adams 6,257 · Jefferson 3,800 · Jay 849.
 
-`scripts/build_classroom.py` scans the printed letter headings and paragraphs, requires a dated one-person writer and recipient match in the catalog, rejects ambiguous same-date matches, and then selects 300 different records with preference for spring 1782. It balances assignments by word count (about 3,500 words each). The selected material spans 1777–1784; that breadth is a property of the available matched texts, not a claim of one continuous historical episode. `scripts/build_samples.py` verifies every sample quote against its cited classroom text. The matching rules reduce obvious false matches but do not constitute a full scholarly collation of all 300 transcriptions. Source-volume links, catalog permalinks, and printed headings are retained for checking.
+`scripts/build_classroom.py` scans the printed letter headings and paragraphs, requires a dated one-person writer and recipient match in the catalog, rejects ambiguous same-date matches, and then selects 300 different records with preference for spring 1782. It balances assignments by word count (about 3,500 words each). The selected material spans 1777–1784; that breadth is a property of the available matched texts, not a claim of one continuous historical episode. The matching rules reduce obvious false matches but do not constitute a full scholarly collation of all 300 transcriptions. Source-volume links, catalog permalinks, and printed headings are retained for checking.
 
 ## Transformations
 
