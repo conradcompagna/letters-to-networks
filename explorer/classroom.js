@@ -40,7 +40,7 @@
       const letter = letters.get(id), done = (state.own.letters[id]?.annotations || []).length > 0;
       return `<button class="letter-tab ${id === state.current ? 'active' : ''}" data-id="${esc(id)}">
         <span>${String(index + 1).padStart(2, '0')}</span>
-        <span>${esc(letter.writer.split(',')[0])} → ${esc(letter.addressee.split(',')[0])}<br><small>${esc(letter.date)} · ${letter.words} words</small></span>
+        <span>${esc(letter.writer.split(',')[0])} → ${esc(letter.addressee.split(',')[0])}<br><small>${esc(letter.date)}</small></span>
         <em>${done ? '✓' : ''}</em></button>`;
     }).join('');
     $('letterDeck').querySelectorAll('button').forEach(button =>
@@ -65,7 +65,7 @@
     if (state.current) saveDraft();
     state.current = id;
     const letter = letters.get(id), draft = loadDraft();
-    $('reader').innerHTML = `<div class="letter-head"><div><p class="eyebrow">${esc(letter.date)} · ${letter.words} words</p>
+    $('reader').innerHTML = `<div class="letter-head"><div><p class="eyebrow">${esc(letter.date)}</p>
       <h2>${esc(letter.title)}</h2><small>${esc(letter.heading)} · Sparks, vol. ${esc(letter.volume)}</small></div>
       <a href="${esc(letter.catalogUrl)}" target="_blank" rel="noopener">Archive record ↗</a></div>
       <div class="letter-text">${letter.paragraphs.map(p => `<p>${esc(p)}</p>`).join('')}</div>
