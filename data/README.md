@@ -16,7 +16,7 @@ The modern transcriptions and annotations on Founders Online belong to the edito
 | `records.csv` | 20,747 | Every document in the Franklin, Adams, Jefferson and Jay Papers dated 1 January 1777 – 31 December 1784. Columns: `doc_id`, `edition`, `date` (the `date-from` field), `title`, `authors`, `recipients` (lists joined with ` \| `), `permalink`. |
 | `name_authority.csv` | 34 | Decisions about name variants, made for this lab: `merge` (19), `probable` (4), `keep separate` (11), each with the reason. `variant` is replaced by `canonical` when a decision is applied. |
 | `classroom_letters.json` | 300 | Complete printed letters matched to individual Founders Online catalog records; 30 nonoverlapping ten-letter assignments. The generated browser data is `explorer/classroom_data.js`. |
-| `sample_annotations.json` | 12 | Hand-authored simulated class relation tags for eleven selected letters; the browser copy is `explorer/sample_data.js`. |
+| `sample_annotations.json` | 46 | Hand-authored simulated class relation tags for 45 letters; the browser copy is `explorer/sample_data.js`. |
 | `starter_letters.json` | 10 | Earlier pilot deck retained for reference; it is no longer used by the classroom browser. |
 | `raw/founders-00README.html` | – | The metadata directory's description page, as downloaded. |
 
@@ -26,7 +26,7 @@ Records per edition: Franklin 9,841 · Adams 6,257 · Jefferson 3,800 · Jay 849
 
 ## Transformations
 
-`records.csv` makes three changes to the source and no others. It keeps four projects. It keeps documents whose `date-from` falls in 1777–1784; undated documents are dropped. It shortens `project` to the edition name. Names, titles and dates are unchanged, including the editions' own inconsistencies, because those inconsistencies are what Stages 1, 2 and 6 of the lab examine.
+`records.csv` makes three changes to the source and no others. It keeps four projects. It keeps documents whose `date-from` falls in 1777–1784; undated documents are dropped. It shortens `project` to the edition name. Names, titles and dates are unchanged, including the editions' own inconsistencies, because those inconsistencies are what Stages 1, 2 and 6 of the notebook examine.
 
 Everything else is done in `netlab.py` and is controlled by the notebook:
 

@@ -42,3 +42,7 @@ The curation script selects 300 different 1777–1784 printed letters, each matc
 The graph uses the original four-edition archive network built from the 20,747-record metadata corpus, with the class relations overlaid. For legibility, the drawing shows its largest connected network above the archive explorer's display threshold, plus every person in the 300 class letters. The original node coordinates are preserved; eight extra class correspondents are placed by a constrained spring layout. The [Jupyter notebook](lab.ipynb) remains an optional longer methods exercise. Install [requirements.txt](requirements.txt) and open it with JupyterLab if you want that route.
 
 Metadata: [Founders Online](https://founders.archives.gov), National Archives and University of Virginia Press. Printed letter texts: [Project Gutenberg's Sparks edition](https://www.gutenberg.org/ebooks/search/?query=Diplomatic+Correspondence+American+Revolution+Sparks). Lab design and code: Conrad Compagna.
+
+## For instructors
+
+A [teaching guide](instructor/TEACHING_GUIDE.md) is included. An answer key is available to instructors on request: [conradcompagna@gmail.com](mailto:conradcompagna@gmail.com).
