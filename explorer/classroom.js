@@ -30,6 +30,7 @@
   function updateGraph() {
     if (!state.student) return;
     $('graphArea').classList.remove('hidden');
+    $('analysisArea').classList.remove('hidden');
     window.classNetwork.update(graphAnnotations(), state.student);
     window.classNetwork.reveal();
   }
