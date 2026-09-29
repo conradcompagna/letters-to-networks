@@ -6,10 +6,11 @@
   const letters = new Map(data.letters.map(letter => [letter.docId, letter]));
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[char]));
   const state = {server:false, code:'', student:null, own:{letters:{}}, classAnnotations:[], submittedDocIds:[],
-    current:null, skipped:false, saving:false};
+    current:null, saving:false, savingAnalysis:false};
   const assignment = () => data.assignments[state.student] || [];
   const localKey = () => `letters-classroom-v2-student-${state.student}`;
   const draftKey = (id = state.current) => `${localKey()}-draft-${id}`;
+  const analysisDraftKey = () => `${localKey()}-analysis-draft`;
   const completed = () => assignment().filter(id => (state.own.letters[id]?.annotations || []).length > 0).length;
 
   function message(text, error = false, id = 'saveStatus') {
@@ -23,14 +24,12 @@
   function graphAnnotations() {
     const assigned = new Set(assignment()), submitted = new Set(state.submittedDocIds);
     const simulated = samples.filter(item => !assigned.has(item.docId) && !submitted.has(item.docId));
-    const actual = state.server && completed() === 10 ? state.classAnnotations : ownAnnotations();
+    const actual = state.server ? state.classAnnotations : ownAnnotations();
     return [...actual, ...simulated];
   }
   function updateGraph() {
     if (!state.student) return;
-    const reveal = state.skipped || completed() === 10;
-    $('graphArea').classList.toggle('hidden', !reveal);
-    if (!reveal) return;
+    $('graphArea').classList.remove('hidden');
     window.classNetwork.update(graphAnnotations(), state.student);
     window.classNetwork.reveal();
   }
@@ -53,6 +52,26 @@
   }
   function loadDraft() {
     try {return JSON.parse(localStorage.getItem(draftKey()) || 'null');} catch {return null;}
+  }
+  function loadAnalysis() {
+    let draft = null;
+    try {draft = localStorage.getItem(analysisDraftKey());} catch {}
+    $('analysisText').value = draft === null ? (state.own.analysis || '') : draft;
+  }
+  async function saveAnalysis() {
+    if (state.savingAnalysis || !state.student) return;
+    const analysis = $('analysisText').value.trim();
+    if (!analysis) return message('Write your response first.', true, 'analysisStatus');
+    state.savingAnalysis = true;
+    $('saveAnalysis').disabled = true;
+    try {
+      if (state.server) await api('/api/analysis', {analysis});
+      state.own.analysis = analysis;
+      if (!state.server) localStorage.setItem(localKey(), JSON.stringify(state.own));
+      try {localStorage.removeItem(analysisDraftKey());} catch {}
+      message('Saved.', false, 'analysisStatus');
+    } catch (error) {message(error.message, true, 'analysisStatus');}
+    finally {state.savingAnalysis = false; $('saveAnalysis').disabled = false;}
   }
   function renderAnnotations() {
     const saved = state.own.letters[state.current]?.annotations || [];
@@ -114,7 +133,6 @@
         $('relationTag').value = ''; $('relationNote').value = '';
         renderAnnotations();
       }
-      if (completed() === 10 && !state.skipped) $('graphArea').scrollIntoView({behavior:'smooth', block:'start'});
     } catch (error) {message(error.message, true);}
     finally {state.saving = false; $('addAnnotation').disabled = false;}
   }
@@ -140,7 +158,7 @@
         localStorage.setItem('letters-classroom-access-code', claim.code);
         if (location.hash) history.replaceState(null, '', location.pathname + location.search);
         await refreshState();
-        setInterval(() => {if (completed() === 10) refreshState().catch(() => {});}, 8000);
+        setInterval(() => refreshState().catch(() => {}), 8000);
       } else openPreview();
     } catch (error) {
       if (state.server) message(error.message, true, 'modeStatus');
@@ -148,15 +166,17 @@
     }
     if (state.student) {
       $('assignmentArea').classList.remove('hidden');
+      loadAnalysis();
       selectLetter(assignment()[0]);
       updateGraph();
     }
   }
-  $('skipToGraph').addEventListener('click', () => {
-    state.skipped = true; updateGraph();
-    if (state.student) $('graphArea').scrollIntoView({behavior:'smooth', block:'start'});
-  });
   $('addAnnotation').addEventListener('click', addRelation);
+  $('analysisText').addEventListener('input', () => {
+    message('', false, 'analysisStatus');
+    try {localStorage.setItem(analysisDraftKey(), $('analysisText').value);} catch {}
+  });
+  $('saveAnalysis').addEventListener('click', saveAnalysis);
   for (const id of ['relationTag','relationNote']) $(id).addEventListener('input', saveDraft);
   start().catch(error => message(error.message, true, 'modeStatus'));
 })();

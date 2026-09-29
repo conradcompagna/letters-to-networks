@@ -16,10 +16,11 @@
   @media(max-width:1200px){.layout{grid-template-columns:220px minmax(0,1fr)}.annotation-panel{grid-column:2}.graph-layout{grid-template-columns:180px minmax(0,1fr)}.detail{grid-column:1/-1;max-height:330px}}
   @media(max-width:760px){.layout,.graph-layout{grid-template-columns:1fr}.deck{position:static}.annotation-panel,.detail{grid-column:auto}.stage{height:58vh;min-height:390px}.top{align-items:start}.letter-head{display:block}}
   .graph-controls .find-label{display:grid;gap:5px}.legend .relation-key{display:inline-block;width:15px;height:0;border-top:3px solid #9b38a3;border-radius:0;vertical-align:middle}
+  .analysis-area{border-top:1px solid var(--line);margin-top:24px;padding-top:24px;max-width:850px}.analysis-area h2{margin-bottom:5px}.analysis-area textarea{display:block;width:100%;min-height:210px;margin-top:16px;padding:12px;border:1px solid var(--line);border-radius:6px;resize:vertical;background:#fff;color:var(--ink)}.analysis-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}.analysis-actions .status{margin-right:auto}.analysis-actions button:disabled{opacity:.6;cursor:wait}
   :focus-visible{outline:3px solid #70a7d6;outline-offset:2px}
 </style>
 <div class="wrap">
-  <header class="top"><h1>Letters to Networks</h1><button class="btn" id="skipToGraph">Skip exercise · reveal graph</button></header>
+  <header class="top"><h1>Letters to Networks</h1></header>
   <p class="status" id="modeStatus" role="status"></p>
   <main class="layout hidden" id="assignmentArea">
     <aside class="card body deck"><h2>Ten letters</h2><p class="status" id="progress">0 / 10 annotated</p><div class="deck-buttons" id="letterDeck"></div></aside>
@@ -45,6 +46,12 @@
       </aside>
       <div><div class="card stage" id="graphStage"><canvas id="networkCanvas" tabindex="0" aria-label="Interactive network of correspondents. Drag to pan, scroll to zoom, click a node or tie for details."></canvas><div class="tip hidden" id="graphTip"></div><div class="stage-bar"><button class="btn" id="resetGraph">Reset view</button><button class="btn" id="clearGraph">Clear selection</button></div></div></div>
       <aside class="card body detail" id="graphDetail"></aside>
+    </div>
+    <div class="analysis-area">
+      <h2>Pattern analysis</h2>
+      <p class="status">In about 250 words, describe one large-scale pattern. Refer to at least five different class-annotated letters by title or date.</p>
+      <textarea id="analysisText" aria-label="Pattern analysis" maxlength="15000"></textarea>
+      <div class="analysis-actions"><span class="status" id="analysisStatus" role="status"></span><button class="btn primary" id="saveAnalysis">Save response</button></div>
     </div>
   </section>
 </div>

@@ -97,6 +97,12 @@ def validate_annotations(doc_id: str, annotations: object) -> list[dict]:
     return clean
 
 
+def validate_analysis(value: object) -> str:
+    if not isinstance(value, str) or len(value) > 15000:
+        raise ValueError("Write a response of at most 15,000 characters.")
+    return value.strip()
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
@@ -122,10 +128,6 @@ class Handler(SimpleHTTPRequestHandler):
                 own = submission(student)
                 completed = sum(reviewed(reading) for reading in own["letters"].values())
                 if parsed.path == "/api/state":
-                    if completed < 10:
-                        self.send_json({"student": student, "own": own, "completed": completed,
-                                        "required": 10, "revealed": False})
-                        return
                     all_submissions = [submission(str(i)) for i in range(1, 31)]
                     annotations = [dict(item, docId=doc_id, student=entry["student"])
                                    for entry in all_submissions for doc_id, reading in entry["letters"].items()
@@ -153,7 +155,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         parsed = urlparse(self.path)
-        if parsed.path not in ("/api/claim", "/api/letter"):
+        if parsed.path not in ("/api/claim", "/api/letter", "/api/analysis"):
             self.send_json({"error": "Unknown API route."}, 404)
             return
         length = int(self.headers.get("Content-Length", "0"))
@@ -181,6 +183,8 @@ class Handler(SimpleHTTPRequestHandler):
                     if not annotations:
                         raise ValueError("Add at least one relation for this letter.")
                     own["letters"][doc_id] = {"annotations": annotations}
+                elif parsed.path == "/api/analysis":
+                    own["analysis"] = validate_analysis(body.get("analysis"))
                 write_json(submission_path(student), own)
             self.send_json({"ok": True, "completed": sum(reviewed(reading)
                                                            for reading in own["letters"].values())})

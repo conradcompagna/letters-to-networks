@@ -6,7 +6,7 @@ Figures below are the outputs of the executed notebook with its default argument
 
 The curated lab uses **300 distinct, complete printed letters**, assigned ten per individual to a 30-person class. Their archival writer/addressee fields yield **43 fixed people and 81 directed correspondence ties**. The 46 simulated interpretations come from 45 letters across all 30 assignment groups. None appear on the current student's ten letters, and they are labeled as simulated in the graph.
 
-A relationship annotation describes the letter's fixed writer-to-addressee tie, uses a tag the student created, and gives one sentence explaining what in the text supports that relation. A letter may warrant several tags. The app asks for at least one on each assigned letter before it reveals the graph, and the skip button permits an early demonstration.
+A relationship annotation describes the letter's fixed writer-to-addressee tie, uses a tag the student created, and gives one sentence explaining what in the text supports that relation. A letter may warrant several tags. The graph is available throughout the lab, and the final response draws on at least five different class-annotated letters.
 
 No specific historical network pattern is prescribed, because the submitted edges depend on students' close readings. Do not treat an annotation count as a count of historical events: several students may describe the same relation, and a single letter may support multiple inferences.
 
